@@ -6,7 +6,7 @@
 /// 
 
 ///
-/// REMARKS
+/// CONCLUSION
 /// 
 /// Observer pattern is about some well defined data changing and notifying interested parties.
 /// The pattern makes little sense in pure functional context, since there is no changing state
@@ -21,7 +21,4 @@
 /// 
 /// Haskell has implementation for Observer pattern. However, it is full of IO keywords, making it
 /// impure solution.
-/// 
-///   simple-observer_ The Observer pattern.pdf
-/// 
 /// 

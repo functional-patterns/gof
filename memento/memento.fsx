@@ -11,6 +11,3 @@
 /// State is only meaningful in the impure part of a functional program. Undo/Redo functionality 
 /// can be achieved simply by creating a stack of the "states" of the program. 
 /// 
-
-let test() = 
-    let rec promt input states = 

@@ -6,15 +6,19 @@
 /// 
 
 ///
-/// Director : Director module
+/// CONCLUSION
 /// 
-/// ConcreteBuilder A : Json module
-/// ConcreteBuilder B : Simple module
+/// In functional programming the builder is a function, which is parameterized with functions
+/// to perform each step of the build process. There is no real difference between Template Method,
+/// which also is parameterized with functions to perform the steps.
 /// 
 
-//=================================================================================================
-// Json module (ConcreteBuilder A) - Starts
-//=================================================================================================
+///
+/// Example
+/// 
+/// This example demonstrates how common builder can be used to create documents in different
+/// formats.
+/// 
 
 module Json =
 
@@ -35,14 +39,7 @@ module Json =
     let stringify document =
         "{ " + List.reduce (fun s t -> s + ", " + t) document.tokens + " }"
 
-//=================================================================================================
-// Json module (ConcreteBuilder A) - Ends
-//=================================================================================================
 
-
-//=================================================================================================
-// Simple module (ConcreteBuilder B) - Stars
-//=================================================================================================
 
 module Simple =
 
@@ -60,14 +57,6 @@ module Simple =
     let stringify document =
         document.content
 
-//=================================================================================================
-// Simple module (ConcreteBuilder B) - Ends
-//=================================================================================================
-
-
-//=================================================================================================
-// Director module - Starts
-//=================================================================================================
 
 module Director = 
 
@@ -85,30 +74,28 @@ module Director =
         |> handlePages bookInformation.PageCount
         |> endDocument
 
-//=================================================================================================
-// Director module - Ends
-//=================================================================================================
 
+let test() =
+    let bookInformation = {
+        Director.Author = { Lastname = "Malli"; Firstname = "Milla" }
+        Director.CoAuthors = None
+        Director.PageCount = 213
+        Director.Isbn = "ABC-DEFG-123"
+    }
 
-//=================================================================================================
-// Example - Starts
-//=================================================================================================
+    let jsonBuilder = Director.parseBookInformation Json.startDocument
+                                                    Json.endDocument
+                                                    Json.addAthor
+                                                    Json.addPageCount
+    let json = bookInformation |> jsonBuilder |> Json.stringify
+    
+    let simpleBuilder = Director.parseBookInformation Simple.startDocument
+                                                      Simple.endDocument
+                                                      Simple.addAuthor
+                                                      Simple.addPageCount
+    let simple = bookInformation |> simpleBuilder |> Simple.stringify
 
-let bookInformation = {
-    Director.Author = { Lastname = "Malli"; Firstname = "Milla" }
-    Director.CoAuthors = None
-    Director.PageCount = 213
-    Director.Isbn = "ABC-DEFG-123"
-}
+    printfn "json: %A" json
+    printfn "simple: %A" simple
 
-let jsonBuilder = Director.parseBookInformation Json.startDocument Json.endDocument Json.addAthor Json.addPageCount
-bookInformation |> jsonBuilder |> Json.stringify
-
-let simpleBuilder = Director.parseBookInformation Simple.startDocument Simple.endDocument Simple.addAuthor Simple.addPageCount
-bookInformation |> simpleBuilder |> Simple.stringify
-
-//=================================================================================================
-// Example - Ends
-//=================================================================================================
-
-
+test()

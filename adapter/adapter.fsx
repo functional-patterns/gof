@@ -6,7 +6,7 @@
 /// 
 
 ///
-/// NOTES
+/// CONCLUSION
 ///
 /// In functional world there is only two things to adapt: data and functions. Since the two things
 /// are separated also the adaptation functionality is fine-graned.
@@ -27,109 +27,73 @@
 ///
 ///
 
+///
+/// Example
+/// 
+/// This example demonstrates function adaption and data adaption in some forms.
+/// 
 
-///================================================================================================
-/// Complex Example - Begin
-///================================================================================================
+///
+/// Module to be adapted to have a new interface
+/// 
+module Adaptee =
+    type Circle = { Diameter : int; Position : int * int }
+    let moveHorizontal delta circle =
+        let { Diameter = diameter; Position = (x, y) } = circle
+        { Diameter = diameter; Position = (x + delta, y)}
+    let moveVertical delta circle =
+        let { Diameter = diameter; Position = (x, y) } = circle
+        { Diameter = diameter; Position = (x, y + delta)}
 
-// Definitions in the old interface
-module V1 =
-    type Product = { id : string; description : string; priceTag : string }
+    let scale percentage circle =
+        if percentage < 0
+            // negative scaling not allowed
+        then (false, circle)
+        else (true, { circle with Diameter = circle.Diameter * percentage / 100 })
 
-    let  parseFloat str =
-        match System.Double.TryParse str with
-            | true, f -> Some(f)
-            | _ -> None
+///
+/// Module to adapt old adaptee interface to new interface
+/// 
+module Adapter =
 
-    let parsePrice (priceTag : string) =
-        match priceTag.Split ' ' |> List.ofArray with
-            | price::_::[] -> parseFloat(price)
-            | _ -> None
-
-    let costOf count product =
-        match parsePrice(product.priceTag) with
-            | Some(price) -> Some(float count * price)
-            | _ -> None
-
-
-// Definitions in the new interface
-module V2 =
-    type Currency = EUR | USD | GBP
-
-    type Product = { id : int; description : string; price : float; currency : Currency }
-
-    let convertToEur currency price =
-        let factor = match currency with EUR -> 1.00 | USD -> 1.0 / 1.17 | GBP -> 1.0 / 0.88
-
-        factor * price
-
-    let convertFromEur currency price =
-        1.0 / (convertToEur currency price)
-
-    let costOfBasket products currency : float =
-        products
-        |> Seq.map (fun (count, product) -> count, convertToEur currency product.price)
-        |> Seq.sumBy (fun (count, price) -> (float count) * price)
-
-// Functions to adapt products and functionalities between old and new formats
-module ProductAdapter = 
-
-    //
-    // Adapts product from old format to new format and with error checking
-    //
-    let upgradeProduct (oldProduct : V1.Product) : V2.Product option = 
-        let parseFloat str =
-            match System.Double.TryParse str with
-                | true, f -> Some(f)
-                | _ -> None
-        
-        let parseInt str =
-            match System.Int32.TryParse str with
-                |true, i -> Some(i) | _ -> None
-        
-        let parseCurrency str =
-            match str with 
-                | "€" -> Some(V2.EUR)
-                | "$" -> Some(V2.USD)
-                | "£" -> Some(V2.GBP)
-                | _ -> None
-
-        let parsePriceTag (str : string) =
-            match str.Split ' ' |> List.ofArray with
-                | price::currency::[] -> parseFloat(price), parseCurrency(currency)
-                | _ -> None, None
-
-
-        let id = parseInt oldProduct.id
-        let description = oldProduct.description
-        let price, currency = parsePriceTag oldProduct.priceTag
-
-        match id, price, currency with
-            | Some(id), Some(price), Some(currency) ->
-                Some({ id = id; description = description; price = price; currency = currency})
-            | _ -> None
+    type Circle = { Radius : int; Position : int * int }
 
     ///
-    /// Adapts product from new format to old format with error checking
+    /// Data adaption (adaptee format to current format and vice versa)
     /// 
-    let downgradeProduct (newProduct : V2.Product) : V1.Product option =
-        let convertCurrency currency =
-            match currency with
-                | V2.EUR -> "€"
-                | V2.USD -> "$"
-                | V2.GBP -> "£"
+    let private toObsolete circle =
+        let { Radius = radius; Position = position } = circle
+        { Adaptee.Diameter = radius * 2; Adaptee.Position = position }
 
-        let id = newProduct.id.ToString()
-        let description = newProduct.description
-        let price = newProduct.price.ToString()
-        let currency = convertCurrency newProduct.currency
+    let private fromObsolete circle =
+        let { Adaptee.Diameter = diameter; Adaptee.Position = position } = circle
+        { Radius = diameter / 2; Position = position }
 
-        Some({ id = id; description = description; priceTag = price + " " + currency })
 
-//=================================================================================================
-// Complex Example - End
-//=================================================================================================
+    ///
+    /// Function adaption (different inputs)
+    /// 
+    let move deltaX deltaY circle =
+        circle
+        |> toObsolete
+        |> Adaptee.moveHorizontal deltaX
+        |> Adaptee.moveVertical deltaY
+        |> fromObsolete
 
-let oldProduct : V1.Product = { id = "200"; description = "banana"; priceTag = "1.99 €" }
+    ///
+    /// Function adaption (different output)
+    let scale percentage circle =
+        let (success, circle) = circle |> toObsolete |> Adaptee.scale percentage
 
-V1.costOf 10 oldProduct
+        if success
+        then Some (fromObsolete circle)
+        else None
+
+let test() =
+    let original = { Adapter.Radius = 10; Adapter.Position = (0, 0) }
+
+    printfn "created %A" original
+    let modified = original |> Adapter.move 10 8 |> Adapter.scale 200
+    printfn "result %A" modified
+
+test()

@@ -84,12 +84,17 @@ let roundPostDecorator rectangle =
     { rectangle with Roundness = 5 }
 
 
+let test() =
+    let rectangleCreator width height = createRectangle width height |> roundPostDecorator
 
-let rectangleCreator width height = createRectangle width height |> roundPostDecorator
+    let roundedSquareCreator width height = fullDecorator createRectangle width height 
 
-rectangleCreator 5 10
+    let squareCreator width height = (width, height)
+                                        |> squarePreDecorator
+                                        |> (fun t -> createRectangle (fst t) (snd t))
 
-let roundedSquareCreator width height = fullDecorator createRectangle width height 
+    printfn "rectangle: %A" (rectangleCreator 5 10)
+    printfn "rounded square: %A" (roundedSquareCreator 5 10)
+    printfn "square: %A" (squareCreator 5 10)
 
-let squareCreator size = size |> squarePreDecorator |> fun t -> createRectangle (fst t) (snd t)
-
+test()

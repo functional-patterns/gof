@@ -5,12 +5,8 @@
 ///
 
 ///
-/// No point in functional programming.
+/// CONCLUSION
 /// 
-
-
-type Product = {
-    id : int
-    description : string
-    price : float
-}
+/// Functional programming contains only immutable data and functions. Neither of these can be
+/// modified. The concept of having "single instance" is not meaningful in pure functional context.
+/// 

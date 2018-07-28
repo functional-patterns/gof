@@ -6,30 +6,35 @@ let left (subtree, crumbs) =
     match subtree with
         | Node (_, Empty, _) ->
             (subtree, crumbs)
-        | Node (a, left, right) -> 
-            let crumb = Right (Node (a, Empty, right))
-            (left, crumb::crumbs)
+        | Node (a, l, r) -> 
+            let crumb = Right (Node (a, Empty, r))
+            (l, crumb::crumbs)
 
 let right (subtree, crumbs) =
     match subtree with
         | Node (_, _, Empty) ->
             (subtree, crumbs)
-        | Node (a, left, right) -> 
-            let crumb = Left (Node (a, left, Empty))
-            (right, crumb::crumbs)
+        | Node (a, l, r) -> 
+            let crumb = Left (Node (a, l, Empty))
+            (r, crumb::crumbs)
 
 let up (subtree, crumbs) =
     match crumbs with
         | [] ->
             (subtree, crumbs)
-        | (Left (Node (a, left, _)))::crumbs ->
-            (Node (a, left, subtree), crumbs)
-        | (Right (Node (a, _, right)))::crumbs ->
-            (Node (a, subtree, right), crumbs)
+        | (Left (Node (a, l, _)))::crumbs ->
+            (Node (a, l, subtree), crumbs)
+        | (Right (Node (a, _, r)))::crumbs ->
+            (Node (a, subtree, r), crumbs)
+
+let get (subtree, _) =
+    match subtree with | Node (a, _, _) -> a
 
 
 
-let tree = Node (3, Node (1, Node (0, Empty, Empty), Node (2, Empty, Empty)),
+// let tree = Node (3, Node (1, Node (0, Empty, Empty), Node (2, Empty, Empty)),
+//             Node (5, Node (4, Empty, Empty), Node (6, Empty, Empty)))
+let tree = Node (3, Node (1, Node (0, Empty, Empty), Empty),
             Node (5, Node (4, Empty, Empty), Node (6, Empty, Empty)))
 
 
@@ -41,59 +46,40 @@ let rec first (subtree, crumbs) =
     match subtree with
         | Node (_, Empty, _) ->
             (subtree, crumbs)
-        | Node (a, left, right) ->
-            let crumb = Right (Node (a, Empty, right))
-            first (left, crumb::crumbs)
+        | Node (a, l, r) ->
+            let crumb = Right (Node (a, Empty, r))
+            first (l, crumb::crumbs)
 
 let rec until predicate f a =
     if predicate a
     then until predicate f (f a)
     else a
 
-let next (subtree, crumbs) =
+let forward (subtree, crumbs) =
     match subtree with
         | Empty ->
             (subtree, crumbs)
-        | Node (_, _, r) when r <> Empty ->
+        | Node (_, _, Empty) ->
+               let predicate (_, crumbs) =
+                match crumbs with
+                    | [] -> false
+                    | (Right _)::_ -> false
+                    | (Left _)::_ -> true
+               up (until predicate up (subtree, crumbs))
+        | _ ->
             let right = right (subtree, crumbs)
             first right
-        | Node (_, _, r) when r = Empty ->
 
 
 // Rule 1 : If has right child => right
 // Rule 2 : If no right child -> up until R popped
 
 
-
-
-let rec traverse tree =
-    match tree with
-        | Empty ->
-            ()
-        | Node (a, left, right) ->
-            traverse left
-            printfn "%A" a
-            traverse right
-
-traverse tree
-
-
-let foo = seq [1; 2; 3; 4; 5; 6]
-
-
-
-(tree, []) |> left |> right |> up |> up |> right
-
-
-let rec repeat n f =
-    if n = 0
-    then id
-    elif n = 1
-    then f
-    else (f >> repeat (n - 1) f)
-
-let rec until predicate f a =
-    if predicate a
-    then until predicate f (f a)
-    else a
-
+(tree, []) |> first |> get
+(tree, []) |> first |> forward |> get
+(tree, []) |> first |> forward |> forward |> get
+(tree, []) |> first |> forward |> forward |> forward |> get
+(tree, []) |> first |> forward |> forward |> forward |> forward |> get
+(tree, []) |> first |> forward |> forward |> forward |> forward |> forward |> get
+(tree, []) |> first |> forward |> forward |> forward |> forward |> forward |> forward |> get
+(tree, []) |> first |> forward |> forward |> forward |> forward |> forward |> forward |> forward |> get

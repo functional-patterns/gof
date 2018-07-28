@@ -81,16 +81,16 @@ type RectangleFactory = { CreateRectangle : int * int -> FunctionSet }
 
 let vectoryCircleFactory = { CreateCircle = (fun radius -> 
     {
-        DrawFunction = printfn "drawin vector circle with radius = %A" radius;
-        AreaFunction = radius * radius * 3
+        DrawFunction = fun () -> printfn "drawin vector circle with radius = %A" radius
+        AreaFunction = fun () -> radius * radius * 3
     }
 )}
 
 
-let client2 factory functionSet =
+//let client2 factory functionSet =
 
 // Homma sotii functionaalista paradigmaa vasten?
 
 
-//let add (a : int) (b : int) = a + b
-//let add (a : float) (b : float) = a + b
+// let add (a : int) (b : int) = a + b
+// let add (a : float) (b : float) = a + b

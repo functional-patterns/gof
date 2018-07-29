@@ -1,37 +1,37 @@
-//
-// FLYWEIGHT
-//
-// Use sharing to support large numbers of fine-grained objects efficiently.
-//
+///
+/// FLYWEIGHT
+///
+/// Use sharing to support large numbers of fine-grained objects efficiently.
+///
 
-//
-// NOTES
-//
-// In F# flyweight design pattern (sharing a record) is benefical in terms of memory usage. Sharing
-// improves the memory efficiency in proportion of the shared record size and count. For small
-// records the memory usage of the container nullifies the benefit.
-//
-// In simple case the flyweight factory can be just prepopulated map of values. However, using
-// pre-populated map does not allow dynamic creation of the flyweights. Alternative for this is
-// to use Memoize pattern with lazy evaluation. Laze evaluation enables dynamic creation of of the
-// flyweight records from the delivered key. If the data cannot be generated from the key, then it
-// id merely just an id and the map has to be populated statically.
-//
-// Usual way to implement Memoize pattern in F# is to use mutable data. However, this can be done
-// also with immutable data and lazy evaluation. In Haskell the map type supports lazy evaluation
-// by default. For more information see https://wiki.haskell.org/Memoization.
-//
+///
+/// CONCLUSION
+///
+/// In F# flyweight design pattern (sharing a record) is benefical in terms of memory usage. Sharing
+/// improves the memory efficiency in proportion of the shared record size and count. For small
+/// records the memory usage of the container nullifies the benefit.
+///
+/// In simple case the flyweight factory can be just prepopulated map of values. However, using
+/// pre-populated map does not allow dynamic creation of the flyweights. Alternative for this is
+/// to use Memoize pattern with lazy evaluation. Laze evaluation enables dynamic creation of of the
+/// flyweight records from the delivered key. If the data cannot be generated from the key, then it
+/// id merely just an id and the map has to be populated statically.
+///
+/// Usual way to implement Memoize pattern in F# is to use mutable data. However, this can be done
+/// also with immutable data and lazy evaluation. In Haskell the map type supports lazy evaluation
+/// by default. For more information see https://wiki.haskell.org/Memoization.
+///
 
-//
-// TODO
-//
-// Implement memory usage test. Add plots to the work.
-//
-
-//=================================================================================================
-// Example - Begin
-//=================================================================================================
-
+///
+/// Example
+/// 
+/// In this example a scenery is created from rocks and trees. Most of the rocks and trees are the
+/// same, so they can be presented by the same data item. Multiple trees can be combined to create
+/// a forest.
+/// 
+/// Example demonstrates how using the flyweight pattern in F# reduces the memory usage. The benefit
+/// is greater on bigger flyweights.
+/// 
 
 // General definitions
 type Shape = Circle | Square | Triangle
@@ -71,7 +71,7 @@ let rockFactory rockType =
     | Big -> big
 
 
-let lightweightClient() = 
+let flyweightClient() = 
     System.GC.Collect()
     let memoryBefore = System.GC.GetTotalMemory(true)
 
@@ -80,8 +80,6 @@ let lightweightClient() =
 
     System.GC.Collect()
     let memoryAfter = System.GC.GetTotalMemory(true)
-
-    printfn "lightweight forest1 size=%A forst2 size=%A" forest1.Length forest2.Length
 
     memoryAfter - memoryBefore
 
@@ -97,10 +95,14 @@ let regularClient() =
     System.GC.Collect()
     let memoryAfter = System.GC.GetTotalMemory(true)
 
-    printfn "regular forest1 size=%A forst2 size=%A" forest1.Length forest2.Length
-
     memoryAfter - memoryBefore
 
 
-lightweightClient() / (1024L * 1024L)
-regularClient() / (1024L * 1024L)
+let test() =
+    let flyweightMemoryUsage = flyweightClient() / (1024L * 1024L)
+    let regularMemoryUsage = regularClient() / (1024L * 1024L)
+
+    printfn "flyweight memory usage: %A MB" flyweightMemoryUsage
+    printfn "regular memory usage: %A MB" regularMemoryUsage
+
+test()

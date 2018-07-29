@@ -6,6 +6,13 @@
 /// 
 
 ///
+/// CONCLUSION
+/// 
+/// Interpreter is easy implement and useful design pattern also in the functional programming.
+/// Discriminated unions are ideal to present the hiararcial grammar.
+/// 
+
+///
 /// Example
 /// 
 /// Simple Reversed Polish Notation calculator

@@ -13,40 +13,37 @@
 
 
 module ListIterator =
-    let forward (stack, visited) =
-        match stack with
+    let forward (remaining, visited) =
+        match remaining with
             | [] ->
-                (stack, visited)
+                (remaining, visited)
             | head::tail ->
                 (tail, head::visited)
 
-    let backward (stack, visited) =
+    let backward (remaining, visited) =
         match visited with
             | [] ->
-                (stack, visited)
+                (remaining, visited)
             | head::tail ->
-                (head::stack, tail)
+                (head::remaining, tail)
 
-    let rec first (stack, visited) =
+    let rec first (remaining, visited) =
         match visited with
             | [] ->
-                (stack, visited)
+                (remaining, visited)
             | head::tail ->
-                first (head::stack, tail)
+                first (head::remaining, tail)
 
-    let rec last (stack, visited) =
-        match stack with
+    let rec last (remaining, visited) =
+        match remaining with
             | [] ->
-                (stack, visited)
+                (remaining, visited)
             | head::tail ->
                 first (tail, head::visited)
 
-    let get (stack, _) =
-        let a::_ = stack
+    let get (remaining, _) =
+        let a::_ = remaining
         a
-
-
-    ([1 .. 10 ], []) |> forward |> forward |> forward |> backward
 
 
 module TreeIterator =
@@ -166,6 +163,7 @@ module TreeIterator =
                 last left
 
 let test() =
+    // Create a tree and use it to test the tree iterator
     let leaf0 = TreeIterator.Node (0, TreeIterator.Empty, TreeIterator.Empty)
     let leaf2 = TreeIterator.Node (2, TreeIterator.Empty, TreeIterator.Empty)
     let leaf4 = TreeIterator.Node (4, TreeIterator.Empty, TreeIterator.Empty)
@@ -179,6 +177,7 @@ let test() =
     let secondInTree = (tree, []) |> TreeIterator.first |> TreeIterator.forward |> TreeIterator.get
 
 
+    // Create a list and use it to test the list iterator
     let list = [ 0 .. 6]
     let secondInList = (list, []) |> ListIterator.forward |> ListIterator.get
 

@@ -54,16 +54,14 @@ module Steam =
                 | Boiler -> "boiler"
                 | Pipe -> "-pipe-"
                 | Engine power -> sprintf "engine (%A kw)" power
+
     let boilerCreator() = Boiler
     let pipeCreator() = Pipe
     let engineCreator power = Engine power
 
+
 module Electric =
     type System = Generator | Wire | Motor of int
-
-    let generatorCreator() = Generator
-    let wireCreator() = Wire
-    let motorCreator power = Motor power
 
     type System with
         static member Label (part : System) : string =
@@ -72,13 +70,18 @@ module Electric =
                 | Wire -> "-wire-"
                 | Motor power -> sprintf "motor (%A kw)" power
 
+    let generatorCreator() = Generator
+    let wireCreator() = Wire
+    let motorCreator power = Motor power
+
+
 module Framework =
     type Factory<'T> = {
         CreateProvider : unit -> 'T
         CreateConnector : unit -> 'T
         CreateConsumer : int -> 'T
     }
-    
+
     let systemCreatorTemplate factory length power =
         let providerCreator = factory.CreateProvider
         let connectorCreator = factory.CreateConnector

@@ -6,14 +6,20 @@
 /// 
 
 
+module Vector =
+    type Circle = Circle of int
+    type Rectangle = Rectangle of int * int
+
+module Bitmap =
+    type Circle = Circle of int list
+    type Rectangle = Rectangle of int list
+
+type A = Vector.Circle
+type B = B of Bitmap.Circle
+type Circle = C | B
 
 
-module Json =
-    type JsonDocument = JsonDocument of string
 
-module Xml =
-    type XmlDocument = XmlDocument of string
-
-
+type RectangleCreator = int -> Circle
 
 

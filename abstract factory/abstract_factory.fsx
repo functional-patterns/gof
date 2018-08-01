@@ -20,7 +20,8 @@
 /// with the factory created types. However, these problems can be overcome with statically
 /// resolved type parameters. Another way would be to partially apply the framework functions with
 /// the specific module functions. In Haskell typeclasses can be used instead.
-/// 
+
+///
 /// NOTE 
 /// 
 /// Instead of creating separate type hierarchies (Window, ScrollBar in the original GoF exsample)
@@ -30,13 +31,19 @@
 ///
 
 ///
+/// NOTE
+/// 
+/// Instead of using a factory record type, plain functions could be applied to the framework
+/// function directly.
+/// 
+
+///
 /// Example
 /// 
 /// In this example some related data is provided by two separate systems: namely Steam and
 /// Electric systems. Framework functions work on these data types, by using the functions provided
 /// by the corresponding modules.
 /// 
-
 
 module Steam =
     type System = Boiler | Pipe | Engine of int
@@ -66,7 +73,15 @@ module Electric =
                 | Motor power -> sprintf "motor (%A kw)" power
 
 module Framework =
-    let systemCreatorTemplate providerCreator connectorCreator consumerCreator length power =
+    type Factory<'T> = {
+        CreateProvider : unit -> 'T
+        CreateConnector : unit -> 'T
+        CreateConsumer : int -> 'T
+    }
+    let systemCreatorTemplate factory length power =
+        let providerCreator = factory.CreateProvider
+        let connectorCreator = factory.CreateConnector
+        let consumerCreator = factory.CreateConsumer
         [providerCreator()] @ List.init length (fun _ -> connectorCreator()) @ [consumerCreator power]
 
     let inline printSystem (system : ^t list) : string =
@@ -76,10 +91,19 @@ module Framework =
 
 
 let test() =
-    let steamSystemCreator =
-        Framework.systemCreatorTemplate Steam.boilerCreator Steam.pipeCreator Steam.engineCreator
-    let electricSystemCreator =
-        Framework.systemCreatorTemplate Electric.generatorCreator Electric.wireCreator Electric.motorCreator
+    let steamFactory = {
+        Framework.Factory.CreateProvider = Steam.boilerCreator
+        Framework.Factory.CreateConnector = Steam.pipeCreator
+        Framework.Factory.CreateConsumer = Steam.engineCreator
+    }
+    let electricFactory = {
+        Framework.Factory.CreateProvider = Electric.generatorCreator
+        Framework.Factory.CreateConnector = Electric.wireCreator
+        Framework.Factory.CreateConsumer = Electric.motorCreator
+    }
+
+    let steamSystemCreator = Framework.systemCreatorTemplate steamFactory
+    let electricSystemCreator = Framework.systemCreatorTemplate  electricFactory
 
     let steamSystem = steamSystemCreator 2 10
     let electricSystem = electricSystemCreator 1 100

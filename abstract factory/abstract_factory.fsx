@@ -78,6 +78,7 @@ module Framework =
         CreateConnector : unit -> 'T
         CreateConsumer : int -> 'T
     }
+    
     let systemCreatorTemplate factory length power =
         let providerCreator = factory.CreateProvider
         let connectorCreator = factory.CreateConnector

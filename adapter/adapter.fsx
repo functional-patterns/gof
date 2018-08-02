@@ -30,7 +30,8 @@
 ///
 /// Example
 /// 
-/// This example demonstrates function adaption and data adaption in some forms.
+/// This example demonstrates how an old interface (Adaptee module) is adapted to a new interface
+/// (Adapter module). It includes both forms of adaption - data and function - adaption.
 /// 
 
 ///
@@ -52,10 +53,9 @@ module Adaptee =
         else (true, { circle with Diameter = circle.Diameter * percentage / 100 })
 
 ///
-/// Module to adapt old adaptee interface to new interface
+/// Module to adapt old Adaptee interface to new interface
 /// 
 module Adapter =
-
     type Circle = { Radius : int; Position : int * int }
 
     ///
@@ -82,6 +82,7 @@ module Adapter =
 
     ///
     /// Function adaption (different output)
+    /// 
     let scale percentage circle =
         let (success, circle) = circle |> toObsolete |> Adaptee.scale percentage
 

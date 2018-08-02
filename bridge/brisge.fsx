@@ -21,7 +21,7 @@
 ///
 /// Example - Drawing application
 /// 
-/// In this example simple drawing program is demonstrated. Client can instantiate and use
+/// In this example simple drawing application is implemented. Client can instantiate and use
 /// different paletettes to draw shapes. Actual drawing is done on the implementation side, which
 /// offers vector and pixel based implementations.
 /// 
@@ -33,15 +33,9 @@
 /// primitive painting functions.
 /// 
 
-
-
-
-
 ///
 /// Functions of the abstraction part (Window, TransientWindow, IconWindow)
 /// 
-
-
 module PainterAbstraction =
     ///
     /// Abstract data, concerete implementation may use something different
@@ -100,7 +94,6 @@ module WinterPainter =
 /// Template postfix indicates abstract base function, which should be partially applicated
 /// to create a concerete painter.
 /// 
-
 module PainterImplementation =
     let paintLineTemplate linePainter p1 p2 =
         linePainter p1 p2
@@ -120,16 +113,16 @@ module VectorPainter =
 module PixelPainter =
     let paintPixelLine (p1 : int * int) (p2 : int * int) =
         printfn "painting pixel line from %A to %A" p1 p2
-    let paintPixeEllipse (origo : int * int) (radiusA : int) (radiusB : int) =
+    let paintPixelEllipse (origo : int * int) (radiusA : int) (radiusB : int) =
         printfn "painting pixel ellipse origo=%A radiusA=%i radiusB=%i" origo radiusA radiusB
 
 
 let test() =
     // Partially apply abstraction side functions
-    //let linePrimitive = PixelPainter.paintPixelLine
-    //let ellipsePrimitive = PixelPainter.paintPixeEllipse
-    let linePrimitive = VectorPainter.paintVectorLine
-    let ellipsePrimitive = VectorPainter.paintVectorEllipse
+    let linePrimitive = PixelPainter.paintPixelLine
+    let ellipsePrimitive = PixelPainter.paintPixelEllipse
+    //let linePrimitive = VectorPainter.paintVectorLine
+    //let ellipsePrimitive = VectorPainter.paintVectorEllipse
 
     let drawShape = PainterAbstraction.drawShapeTemplate ellipsePrimitive linePrimitive
 

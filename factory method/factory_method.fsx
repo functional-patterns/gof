@@ -10,11 +10,22 @@
 /// 
 /// Factory Method in functional programming is a simple function, which takes some input
 /// parameters and returns the desired value. Framework code can then use these types, as long
-/// as generic functions to operate with these values are also provided.
+/// as functions to operate with these values are also provided.
 /// 
-/// In F# these generic functions can be implemented with statically resolved type parameters. In
-/// Haskell the typeclasses would be more appropriate way. However, also simple functions could be
-/// injected to the framework functions, to help those to operate with the created values.
+/// There is some options for the signature of the creator function. For example:
+/// 
+///   1) a -> b -> ^t, where ^t is a generic type
+///   2) a -> b -> d,  where d is a discriminated union type
+///   3) a -> b -> e,  where e is arbitrary type
+/// 
+/// In the first case statically resolved type parameters may be used to implement the generic
+/// functions (F#) or typeclasses (Haskell).
+/// 
+/// In the second case basic functions are sufficient, as long as they operatate with all of the
+/// discriminated union values.
+/// 
+/// In the third case set of functions to operate with the specific type 'e' has to be also
+/// provided to the framework function, so it can operate with the created values
 /// 
 
 ///

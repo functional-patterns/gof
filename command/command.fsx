@@ -6,45 +6,6 @@
 /// 
 
 ///
-/// Applicability
-/// 
-/// Use the Command pattern when you want to
-/// - parameterize objects by an action to perform, as MenuItem objects did above. You can express
-///   such parameterization in a procedural language with a callback function, that is, a function
-///   that's registered somewhere to be called at a later point. Commands are an object-oriented
-///   replacement for callbacks.
-/// - specify, queue, and execute requests at different times. A Command object can have a lifetime
-///   independent of the original request. If the receiver of a request can be represented in an
-///   address space-independent way, then you can transfer a command object for the request to a
-///   different process and fulfill the request there.
-/// - support undo. The Command's Execute operation can store state for reversing its effects in the
-///   command itself. The Command interface must have an added Unexecute operation that reverses the
-///   effects of a previous call to Execute. Executed commands are stored in a history list.
-///   Unlimited-level undo and redo is achieved by traversing this list backwards and forwards
-///   calling Unexecute and Execute, respectively.
-/// - support logging changes so that they can be reapplied in case of a system crash. By augmenting
-///   the Command interface with load and store operations, you can keep a persistent log of
-///   changes. Recovering from a crash involves reloading logged commands from disk and reexecuting
-///   them with the Execute operation.
-/// - structure a system around high-level operations built on primitives operations. Such a
-///   structure is common in information systems that support transactions. A transaction
-///   encapsulates a set of changes to data. The Command pattern offers a way to model transactions.
-///   Commands have a common interface, letting you invoke all transactions the same way. The
-///   pattern also makes it easy to extend the system with new transactions.
-/// 
-
-///
-/// REMARKS
-/// 
-/// Seems that commands are usefull only when there is some global state they are changing.
-/// 
-/// Supporting undo/redo functionality some mutable state should be introduced. This can be only
-/// done in impure context.
-/// 
-///
-/// 
-
-///
 /// CONCLUSION
 /// 
 /// Command is just a regular function in functional programming. Signature of the function may be
@@ -64,80 +25,66 @@
 /// 
 
 ///
+/// REMARKS
+/// 
+/// Seems that commands are usefull only when there is some global state they are changing.
+/// 
+
+///
 /// Example
 /// 
-/// In this example a simple calculator featuring +, -, *, - and abs operations is implemented with
-/// regular commands. More adcanced command, diff, is implemented as macro command.
+/// In this example program provides some pre-determined inputs, which are mapped to corresponding
+/// commands. Single command may move a circle to any of the four main directions. Macro command is
+/// used to execute multiple base commands sequantially.
 /// 
-type State = int list
-type Command = State -> State option
 
-let (>>=) a f =
-    match a with
-        | Some a -> f a
-        | _ -> None
+// State of the application is the position and radius of a circle
+type Circle = { X : int; Y : int; Radius : int }
 
-let addCommand state =
-    match state with
-        | a::b::tail ->
-            Some ((a + b)::tail)
-        | _ -> None
+// Inputs to move the circle (North, South, ..., South West)
+type Input = N | S | E | W | NE | NW | SE | SW
 
-let subCommand state =
-    match state with
-        | a::b::tail ->
-            Some ((a - b)::tail)
-        | _ -> None
+// Specify some commands...
+let moveLeft circle = { circle with X = circle.X - 1 }
+let moveRight circle = { circle with X = circle.X + 1 }
+let moveUp circle = { circle with Y = circle.Y + 1 }
+let moveDown circle = { circle with Y = circle.Y - 1 }
+let macroTemplate commands (circle : Circle) =
+    commands |> List.fold (fun circle command -> command circle) circle
 
-let mulCommand state =
-    match state with
-        | a::b::tail ->
-            Some ((a * b)::tail)
-        | _ -> None
+// ... use macro command to implement diagonal shifts with basic commands
+let moveUpLeft circle = macroTemplate [moveUp; moveLeft] circle
+let moveUpRight circle = macroTemplate [moveUp; moveRight] circle
+let moveDownLeft circle = macroTemplate [moveDown; moveLeft] circle
+let moveDownRight circle = macroTemplate [moveDown; moveRight] circle
 
-let macroCommand commands state =
-    List.fold (>>=) (Some state) commands
-    
 
-let divCommand state =
-    match state with
-        | _::0::_ ->
-            None
-        | a::b::tail ->
-            Some ((a / b)::tail)
-        | _ -> None
-
-let absCommand state =
-    match state with
-        | a::tail ->
-            Some ((if a > 0 then a else -a)::tail)
-        | _ -> None
+let commands = [
+            (N, moveUp)
+            (S, moveDown)
+            (E, moveLeft)
+            (W, moveRight)
+            (NE, moveUpLeft)
+            (NW, moveUpRight)
+            (SE, moveDownLeft)
+            (SW, moveDownRight) ] |> Map.ofList
 
 let test() =
-    let diffCommand = macroCommand [ subCommand; absCommand ];
+    // Simulate user inputs or program parameters
+    let inputs = [ N; N; N; E; SE ]
 
-    let operations = [ ("+", addCommand)
-                       ("-", subCommand)
-                       ("*", mulCommand)
-                       ("/", divCommand)
-                       ("abs", absCommand)
-                       ("diff", diffCommand) ] |> Map.ofList
+    // Create initial state
+    let initialState = { X = 0; Y = 0; Radius = 5 }
+    
+    // Command executor (calls command function with the current state)
+    let handler state input = 
+        let command = Map.find input commands
+        command state
 
+    // Run all the inputs through the initial state
+    let finalState = List.fold handler initialState inputs
 
-    let rec run state =
-        printfn "state is: %A" state
-        printf "command> "
-        let token = System.Console.ReadLine()
-
-        match state with
-            | Some state ->
-                if Map.containsKey token operations
-                then run ((Map.find token operations) state)
-                elif (fst (System.Int32.TryParse token))
-                then run (Some ((int token)::state))
-            | None ->
-                ()
-
-    run (Some [])
+    printfn "initial state: %A" initialState
+    printfn "final state: %A" finalState
 
 test()

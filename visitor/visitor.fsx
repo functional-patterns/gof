@@ -6,13 +6,15 @@
 /// 
 
 ///
-/// NOTE
+/// CONCLUSION
 /// 
-/// For lists and maps functional programms usually define a fold function. It is the same thing as
-/// the listTraverser function in the following example.
+/// In functional programming Visitor is combination of two things. A method to traverse through a
+/// data structure and a set of functions to perform different operations to each item. For example
+/// lists and trees are easy to traverse with recursion.
 /// 
-/// It would also be possible to define traverser function for a tree. In this case the very same
-/// visitors could be used.
+/// It is also easy to implement these traversal functions in generic way, so they can operate with
+/// any kind of items and take different functions as parameters to do the 'visiting' part of the
+/// design pattern.
 /// 
 
 ///
@@ -22,12 +24,14 @@
 /// defined to go through the data structure. Then two different visitors are defined to visit each
 /// element. 
 /// 
-
-///
-/// Shapes may be circles with radius or rectangles with height and width
+/// It would also be possible to define traverser function for a tree. In this case the very same
+/// visitors could be used.
 /// 
+
+// Some shapes as discriminated union
 type Shape = Circle of int | Rectangle of int * int
 
+// Specify a traversal function (the default fold of the List could be used instead)
 let rec listTraverser visitor acc shapes =
     match shapes with
         | [] ->
@@ -36,6 +40,7 @@ let rec listTraverser visitor acc shapes =
             let acc = visitor acc head
             listTraverser visitor acc tail
             
+// Specify some visitors
 let printVisitor () shape =
     match shape with
         | Circle _ ->
@@ -50,17 +55,10 @@ let circleCollector acc shape =
         | _ ->
             acc
 
-[ Circle 5; Rectangle (2, 5); Circle 4] |> listTraverser printVisitor ()
-[ Circle 5; Rectangle (2, 5); Circle 4] |> listTraverser circleCollector []
-
-
-let shapes = [ Circle 5; Rectangle (2, 5); Circle 4]
-
-shapes |> List.fold printVisitor ()
-
-
 let test() =
     let shapes = [ Circle 5; Rectangle (2, 5); Circle 4]
 
     shapes |> listTraverser printVisitor ()
     shapes |> listTraverser circleCollector []
+
+test()

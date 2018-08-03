@@ -27,18 +27,14 @@
 /// In this example different strategies are implemented and used to divide a phrase to words.
 /// 
 
-let phrase = "a brown fox jumped over the lazy dog" |> Seq.map char |> Seq.toList
 
-type CompositionStrategy = char list -> char list list
-
-///
-/// Safe versions of the default skip and take functions
-/// 
+// Safe versions of the default skip and take functions
 let take count items = List.truncate count items
 let skip count items = if List.length items < count then [] else List.skip count items
 
 
-let fixedStrategy length text =
+// Some strategies to chop sentences to lines
+let fixedStrategyTemplate length text =
     let rec chop text lines =
         match text with
             | [] ->
@@ -62,22 +58,17 @@ let simpleStrategy text =
                 chop remaining (lines @ [line])
 
     chop text []
-        
 
+let test() =
+    let phrase = "a brown fox jumped over the lazy dog" |> Seq.map char |> Seq.toList
 
+    // Use of partial application to make the template to have same signature as other strategies
+    let fixedStrategy = fixedStrategyTemplate 10
 
-phrase |> Seq.map char |> Seq.toList
+    let fix = fixedStrategyTemplate 10 phrase
+    let simple = simpleStrategy phrase
 
-fixedStrategy 10 phrase
-simpleStrategy phrase
+    printfn "fixed: %A" fix
+    printfn "simple: %A" simple
 
-
-phrase |> List.takeWhile (fun c -> c <> ' ')
-
-
-phrase |> Seq.truncate 10 |> List.ofSeq
-
-
-
-
-"foobar" |> Seq.map char |> Seq.toList |> List.tryFindIndex (fun c -> c = 'b')
+test()

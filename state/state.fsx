@@ -15,18 +15,45 @@
 /// However, none of these feel well suited to address the original intent of the design pattern.
 /// 
 
-
 ///
-/// NOTE
-///
-/// By nature functional program is immutable. State has to come from the outside of the pure
-/// functional core logic.
-///
-/// For example infinite sequences may present incoming data. A fold function transforms sequence of
-/// elements and initial state to a final state.
+/// EXAMPLE
+/// 
+/// In this example a state is used to implement a simple message protocol. State of the receiver
+/// changes when Open and Close messages are received. If the receiver is waiting for a connection
+/// to open, it ignores all Data messages. When connection is established, it handles those.
 ///
 
-///
-/// Seems that State monad is just another presentation for fold. In State monad the folder
-/// function's signature is a -> State s () where as it is a -> b -> in fold.
-///
+type Message = Open | Data of char | Close
+
+
+type State = { Continuation : State -> Message -> State; Letters : char list }
+
+
+let rec listener (state : State) (message : Message) : State =
+    match message with
+        | Open ->
+            { state with Continuation = acceptor }
+        | _ ->
+            state
+and acceptor (state : State) (message : Message) : State =
+    match message with
+        | Data c ->
+            { state with Letters = c::(state.Letters)}
+        | Close ->
+            { state with Continuation = listener }
+        | _ ->
+            state
+
+let folder (state : State) (message : Message) =
+    state.Continuation state message
+
+let test() =
+    let messages = [ Data 'a'; Open; Data 'f'; Data 'o'; Data 'o'; Close; Data '?' ]
+
+    messages
+    |> List.fold folder { Continuation = listener; Letters = [] }
+    |> fun s -> s.Letters
+    |> List.fold (fun s t -> t::s) []
+    |> printfn "message=%A"
+
+test()

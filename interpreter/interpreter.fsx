@@ -8,16 +8,17 @@
 ///
 /// CONCLUSION
 /// 
-/// Interpreter is easy implement and useful design pattern also in the functional programming.
-/// Discriminated unions are ideal to present the hiararcial grammar.
+/// In functional programming Interpreter is easy to implement and useful. Discriminated unions are
+/// ideal to present the hiararcial grammar.
 /// 
 
 ///
 /// Example
 /// 
-/// Simple Reversed Polish Notation calculator
+/// Simple Reversed Polish Notation calculator.
 /// 
 
+// Specify grammar with discriminated unions
 type Expression = Number of Number | Operation of Operation | Empty
 and Number = int
 and Operation = | Plus of Expression * Expression
@@ -25,6 +26,7 @@ and Operation = | Plus of Expression * Expression
                 | Factorial of Expression
 
 
+// Some functions evaluating different types of values
 let rec evaluateNumber number =
     number
 
@@ -46,6 +48,7 @@ and evaluateExpression expression =
             evaluateOperation o
 
 
+// Function to parse given input to an expression
 let rec parse input stack =
     match input with
         | [] ->
@@ -74,10 +77,14 @@ let rec parse input stack =
 
 
 let test() =
-    // Calculate expression 100 + 10 - 200
-    let tester = string("100 10 + 200 -").Split ' ' |> List.ofArray
-    let expression = List.head (parse tester [])
+    // Create expression 100 + 10 - 200
+    let input = string("100 10 + 200 -").Split ' ' |> List.ofArray
+    let expression = List.head (parse input [])
+
+    // Calculate the result
+    let result = evaluateExpression expression
+
     printfn "expression = %A" expression
-    evaluateExpression expression
+    printfn "result = %A" result
 
 test()

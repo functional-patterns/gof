@@ -6,6 +6,13 @@
 /// 
 
 ///
+/// CONCLUSION
+/// 
+/// In functional programming strategy is just a family of functions having the same signature and
+/// conceptually performing the same kind of task (like compressing data or sorting items).
+/// 
+
+///
 /// NOTES
 /// 
 /// Remember to compare different design patterns in functional programming. Many of them -
@@ -15,11 +22,10 @@
 /// 
 
 ///
-/// Example
+/// EXAMPLE
 /// 
 /// In this example different strategies are implemented and used to divide a phrase to words.
 /// 
-
 
 let phrase = "a brown fox jumped over the lazy dog" |> Seq.map char |> Seq.toList
 

@@ -6,7 +6,7 @@
 /// 
 
 ///
-/// NOTES
+/// CONCLUSION
 /// 
 /// Since all data is immutable in pure functional programming there is no need to clone anything.
 /// Cloning is performed in language level when immutable data is modified. That is, a copy of the
@@ -53,50 +53,16 @@ let test() =
     let rectangleInsertionTool =
         Framework.insertionToolTemplate (Graphics.Rectangle ((0, 0), 5, 3)) Graphics.shapePositioner
 
+    let art = [circleInsertionTool (5, 5); rectangleInsertionTool (10, 2)]
+    printfn "art: %A" art
+
+
     let halfNoteInsertionTool =
         Framework.insertionToolTemplate (Music.HalfNote (0, 0)) Music.notePositioner
     let fullNoteInsertionTool =
-        Framework.insertionToolTemplate (Music.HalfNote (0, 0)) Music.notePositioner
+        Framework.insertionToolTemplate (Music.FullNote (0, 0)) Music.notePositioner
 
-    halfNoteInsertionTool (5, 5)
+    let music = [halfNoteInsertionTool (5, 5); fullNoteInsertionTool (10, 2)]
+    printfn "music: %A" music
 
-let test2() =
-    let halfNoteInsertionTool =
-        Framework.insertionToolTemplate (Music.HalfNote (0, 0)) Music.notePositioner
-    let fullNoteInsertionTool =
-        Framework.insertionToolTemplate (Music.HalfNote (0, 0)) Music.notePositioner
-
-    let tools =
-        [
-            ("half", halfNoteInsertionTool)
-            ("full", fullNoteInsertionTool)
-        ] |> Map.ofList
-
-    let readPosition () =
-        printf "give x:"
-        let x = System.Console.ReadLine() |> int
-        printf "give y:"
-        let y = System.Console.ReadLine() |> int
-
-        Framework.Position (x, y)
-
-    let rec loop elements =
-        printf "command:"
-        let command = System.Console.ReadLine()
-    
-        match command with
-            | toolCommand when Map.containsKey toolCommand tools ->
-                let tool = Map.find toolCommand tools
-                let position = readPosition()
-                let element = tool position
-                loop (element::elements)
-            | "quit" ->
-                elements
-            | _ ->
-                printfn "unknown command"
-                loop elements
-
-    let elements = loop []
-    printfn "notes=%A" elements
-
-test2()
+test()

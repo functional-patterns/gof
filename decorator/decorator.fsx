@@ -6,7 +6,7 @@
 /// 
 
 ///
-/// REMARKS
+/// CONCLUSION
 /// 
 /// If pre-function decoration is used then the signature of the decorator's input and output has
 /// to be the same as the input of the core function. Also there can be only single input parameter.

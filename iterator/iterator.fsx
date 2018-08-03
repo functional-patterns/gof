@@ -6,11 +6,23 @@
 /// 
 
 ///
-/// Example 1
+/// CONLUSION
 /// 
-/// List iterator to travel through lists and tree iterator to travel through trees
+/// Implementing traversal through list or tree structure is easy. However, creating an iterator
+/// implementation is more challenging task in functional programming. Since the iterator cannot
+/// change the state, it must use different method to do the step-by-step iteration.
+/// 
+/// Zippers are well known method in functional paradigm. When iterating forward in a data
+/// structure, the zipper is storing information to get back. It also enables "changing" values of
+/// the data structure by creating new data on demand.
 /// 
 
+///
+/// EXAMPLE
+/// 
+/// In this example two different iterators are implemented. One iterates through lists and another
+/// through trees. Both support backward and forward iterating.
+/// 
 
 module ListIterator =
     let forward (remaining, visited) =

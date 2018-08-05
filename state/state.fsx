@@ -33,7 +33,7 @@ let rec listener (state : State) (message : Message) : State =
             { state with Continuation = acceptor }
         | _ ->
             state
-            
+
 and acceptor (state : State) (message : Message) : State =
     match message with
         | Data c ->

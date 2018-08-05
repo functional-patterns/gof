@@ -119,6 +119,5 @@ let test() =
     printfn "reglar memory concumption %A MB" (regularMemory |> toMegaBytes)
     printfn "flyweight memory concumption %A MB" (flyweightMemory |> toMegaBytes)
     printfn "identical forests = %A" (regularForest = flyweightForest)
-    flyweightForest
 
 test()

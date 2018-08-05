@@ -13,9 +13,9 @@
 ///
 /// In simple case the flyweight factory can be just prepopulated map of values. However, using
 /// pre-populated map does not allow dynamic creation of the flyweights. Alternative for this is
-/// to use Memoize pattern with lazy evaluation. Laze evaluation enables dynamic creation of of the
+/// to use Memoize pattern with lazy evaluation. Lazy evaluation enables dynamic creation of of the
 /// flyweight records from the delivered key. If the data cannot be generated from the key, then it
-/// id merely just an id and the map has to be populated statically.
+/// is merely just an id and the map has to be populated statically.
 ///
 /// Usual way to implement Memoize pattern in F# is to use mutable data. However, this can be done
 /// also with immutable data and lazy evaluation. In Haskell the map type supports lazy evaluation
@@ -76,10 +76,12 @@ let flyweightClient() =
     let memoryBefore = System.GC.GetTotalMemory(true)
 
     let forest1 = List.init 10000000 (fun _ -> treeFactory Fir)
-    let forest2 = List.init 10000000 (fun i -> if i % 2 = 0 then Oak else Mapple)
+    let forest2 = List.init 10000000 (fun i -> if i % 2 = 0 then treeFactory Oak else treeFactory Mapple)
 
     System.GC.Collect()
     let memoryAfter = System.GC.GetTotalMemory(true)
+
+    printfn "forest 1 size=%A and forest 2 size=%A" forest1.Length forest2.Length
 
     memoryAfter - memoryBefore
 
@@ -94,6 +96,8 @@ let regularClient() =
 
     System.GC.Collect()
     let memoryAfter = System.GC.GetTotalMemory(true)
+
+    printfn "forest 1 size=%A and forest 2 size=%A" forest1.Length forest2.Length
 
     memoryAfter - memoryBefore
 

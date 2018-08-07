@@ -10,37 +10,37 @@ These are the 23 original GoF design patterns, grouped in three categories by th
 
 ### Structural
 
-- [Abstract Factory](abstract%20factory/abstract_factory.md) pattern groups object factories that have a common theme
-- [Builder](builder/builder.md) pattern constructs complex objects by separating construction and representation
-- [Factory Method](factory%20method/factory_method.md) pattern creates objects without specifying the exact class to create
-- [Prototype](prototype/prototype) pattern creates objects by cloning an existing object
-- [Singleton](singleton/singleton) pattern restricts object creation for a class to only one instance
+- [Abstract Factory](abstract%20factory/README.md) pattern groups object factories that have a common theme
+- [Builder](builder/README.md) pattern constructs complex objects by separating construction and representation
+- [Factory Method](factory%20method/README.md) pattern creates objects without specifying the exact class to create
+- [Prototype](prototype/README.md) pattern creates objects by cloning an existing object
+- [Singleton](singleton/README.md) pattern restricts object creation for a class to only one instance
 
 
 ### Structural
 
-- [Adapter](adapter/adapter.md) allows classes with incompatible interfaces to work together by wrapping its own interface around that of an already existing class
-- [Bridge](bridge/bridge.md) decouples an abstraction from its implementation so that the two can vary independently
-- [Composite](composite/composite.md) composes zero-or-more similar objects so that they can be manipulated as one object
-- [Decorator](decorator/decorator.md) dynamically adds/overrides behaviour in an existing method of an object
-- [Facade](facade/facade.md) provides a simplified interface to a large body of code
-- [Flyweight](flyweight/flyweight.md) reduces the cost of creating and manipulating a large number of similar objects
-- [Proxy](proxy/proxy.md) provides a placeholder for another object to control access, reduce cost, and reduce complexity
+- [Adapter](adapter/README.md) allows classes with incompatible interfaces to work together by wrapping its own interface around that of an already existing class
+- [Bridge](bridge/README.md) decouples an abstraction from its implementation so that the two can vary independently
+- [Composite](composite/README.md) composes zero-or-more similar objects so that they can be manipulated as one object
+- [Decorator](decorator/README.md) dynamically adds/overrides behaviour in an existing method of an object
+- [Facade](facade/README.md) provides a simplified interface to a large body of code
+- [Flyweight](flyweight/README.md) reduces the cost of creating and manipulating a large number of similar objects
+- [Proxy](proxy/README.md) provides a placeholder for another object to control access, reduce cost, and reduce complexity
 
 
 ### Behavioral
 
-- [Chain of Responsibility](chain%20of%20responsibility/chain_of_responsibility.md) delegates commands to a chain of processing objects
-- [Command](command/command.md) creates objects which encapsulate actions and parameters
-- [Interpreter](interpreter/interpreter) implements a specialized language
-- [Iterator](iterator/iterator) accesses the elements of an object sequentially without exposing its underlying representation
-- [Mediator](mediator/mediator) allows loose coupling between classes by being the only class that has detailed knowledge of their methods
-- [Memento](memento/memento.md) provides the ability to restore an object to its previous state (undo)
-- [Observer](observer/observer) is a publish/subscribe pattern which allows a number of observer objects to see an event
-- [State](state/state.md) allows an object to alter its behavior when its internal state changes
-- [Strategy](strategy/strategy.md) allows one of a family of algorithms to be selected on-the-fly at runtime
-- [Template Method](template%20method/template_method.md) defines the skeleton of an algorithm as an abstract class, allowing its subclasses to provide concrete behavior
-- [Visitor](visitor/visitor) separates an algorithm from an object structure by moving the hierarchy of methods into one object
+- [Chain of Responsibility](chain%20of%20responsibility/README.md) delegates commands to a chain of processing objects
+- [Command](command/README.md) creates objects which encapsulate actions and parameters
+- [Interpreter](interpreter/README.md) implements a specialized language
+- [Iterator](iterator/README.md) accesses the elements of an object sequentially without exposing its underlying representation
+- [Mediator](mediator/README.md) allows loose coupling between classes by being the only class that has detailed knowledge of their methods
+- [Memento](memento/README.md) provides the ability to restore an object to its previous state (undo)
+- [Observer](observer/README.md) is a publish/subscribe pattern which allows a number of observer objects to see an event
+- [State](state/README.md) allows an object to alter its behavior when its internal state changes
+- [Strategy](strategy/README.md) allows one of a family of algorithms to be selected on-the-fly at runtime
+- [Template Method](template%20method/README.md) defines the skeleton of an algorithm as an abstract class, allowing its subclasses to provide concrete behavior
+- [Visitor](visitor/README.md) separates an algorithm from an object structure by moving the hierarchy of methods into one object
 
 
 ## Classification

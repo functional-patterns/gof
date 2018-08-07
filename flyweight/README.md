@@ -17,4 +17,5 @@ Usual way to implement Memoize pattern in F# is to use mutable data. However, th
 
 ## Examples
 
-[#F](flyweight.fsx)[Haskell](flyweight.hs)
+[#F](flyweight.fsx)
+[Haskell](flyweight.hs)

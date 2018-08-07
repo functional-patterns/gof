@@ -81,14 +81,3 @@ Short summary of the all above things with optional notes and remarks.
 ### Examples
 
 If answer to the "applicability" was 'Yes', then a F# example is presented. Some of the examples are also implemented in Haskell. In these cases it is examined if typeclasses or other features missing from F# do any difference.
-
-
-
-
-
-
-
-
-
-
-

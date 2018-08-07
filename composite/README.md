@@ -13,3 +13,8 @@ In functional programming natural way to implement composite is to use discrimin
 Functions taking the discriminated union types as parameters operate the samy way from the client point of view for single and composite values. Usually these functions use recursion to traverse through the values containing composites.
 
 Visitor pattern may be used to create a generic way to traverse composite structures and apply functions to contained values. 
+
+
+## Examples
+
+[F#](composite.fsx)

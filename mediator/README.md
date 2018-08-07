@@ -14,4 +14,4 @@ design pattern does not apply to functional programming.
 
 ## Examples
 
---
+N/A

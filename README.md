@@ -8,7 +8,7 @@ GoF design patterns in pure functional light
 These are the 23 original GoF design patterns, grouped in three categories by the main purpose.
 
 
-### Structural
+### Creational
 
 - [Abstract Factory](abstract%20factory/README.md) pattern groups object factories that have a common theme
 - [Builder](builder/README.md) pattern constructs complex objects by separating construction and representation

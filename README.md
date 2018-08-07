@@ -59,8 +59,7 @@ Value: Yes | No
 
 ### Complexity
 
-Some design patterns are very trivial to implement in functional programming. For example Template Method is just a function which is then
-partially applied to do something usefull. On the other hand Iterator is way more complex to implement and understand.
+Some design patterns are very trivial to implement in functional programming. For example Template Method is just a function which is then partially applied to do something usefull. On the other hand Iterator is way more complex to implement and understand.
 
 Value: Simple | Medium | Complex
 
@@ -75,5 +74,53 @@ Values:
 If something can be done, it does not mean it should be done. Each design pattern is evaluated if it makes sense to be used in functional programming.
 
 Value: Minor | Medium | Major
+
+
+
+## Analysis
+
+
+### Applicability
+
+If the _intention_ of the design pattern is meaningful in pure functional programming. For example Observer design pattern is used to notify changes in the subject object. Since immutability is one of the key concepts in functional programming, there is not much use for the design pattern.
+
+On the otherhand State design pattern deals with immutable state. At first glance it may look totally useless in functional programming. However when analysed further, the meaning of the pattern is to get rid of the if-then-else structure and replace it with an object. In functional programming there is also a lot of concepts involving a concept of 'state'. On of these is the state during a fold operation. The idea behind the State design pattern can be directly applied to a complex fold operation.
+
+If answer for this question is "No", then rest of the anylises criterias are omitted. The pattern simply does not work in functional programming.
+
+Value: Yes | No
+
+
+### Usefulness
+
+If something can be done, it does not mean it should be done. Each design pattern is evaluated if it makes sense to be used in functional programming.
+
+Value: Minor | Medium | Major
+
+
+### Structure
+
+Some design patterns are very trivial to implement in functional programming. For example Template Method is just a function which is then partially applied to do something usefull. On the other hand Iterator is way more complex to implement and understand.
+
+Value: Simple | Medium | Complex
+
+
+### Conclusion
+
+Short summary of the all above things with optional notes and remarks.
+
+
+### Examples
+
+If answer to the "applicability" was 'Yes', then a F# example is presented. Some of the examples are also implemented in Haskell. In these cases it is examined if typeclasses or other features missing from F# do any difference.
+
+
+
+
+
+
+
+
+
 
 

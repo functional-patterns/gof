@@ -1,5 +1,8 @@
 # Decorator
 
+
+## Intent
+
 Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 
 
@@ -22,3 +25,7 @@ There is also third kind of decorator, which can operate as pre- and post-decora
 ~~~~
    type coreFunction (a -> b) -> c    =>    type fullDecorator : (a - b) -> c
 ~~~~
+
+## Examples
+
+[F#](decorator.fsx)

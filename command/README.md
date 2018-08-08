@@ -1,24 +1,42 @@
 # Command
 
+
+## Intent
+
 Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
+
+
+## Analysis
+
+### Overview
+
+Fit : Artifical
+Complexity : Simple
+
+
+### Structure
+
+Command is a function, which takes a state as an input and returns alterate state. If operations may fail, then monadic value may be used. Note that all of the commands must have the similar signature (either regular or monadic).
+
+~~~~   
+  regularFunction :: state -> state
+  monadicCommand :: state -> Maybe state
+~~~~
+
+It is also possible to combine multiple commands behind a macro command. Signature of that macro template takes a list of commands as the first argument. Thus it can be partially applied with specific commands to create a concrete command.
+
+~~~~
+  macroCommandTemplate :: [command] -> state -> state
+~~~~
+
+Commands may be passed to _client_ code as a map. Based on some processing client then queries a command from the map and executes it.
 
 
 ## Conclusion
 
-Command is just a regular function in functional programming. Signature of the function may be
-~~~~   
-     state -> state    or    state -> state option
-~~~~ 
-This depends if commands always succeed or not. Since functions cannot alter any state, the state has to be passed to the function and altered state has to be returned.
+Implementation and use of the Command design pattern in functional programming is straightforward. However, the idea of a command does not fit fluently to pure functional programming. Lack of IO actions and mutability limits it's usability in pure functional programming. 
 
-Macro command is easy to implement with partial application. After that any list of commands may be used to create macro command (that is, a command executing multiple commands).
-
-Since state is handled outside of the pure functional core, the undo/redo actions cannot be added directly to the specific commands. However, since command functions take and return states the caller may easily implement a simple stack to store all of the states. This allows trivial undo/redo implementation.
-
-
-## Note
-
-Seems that commands are usefull only when there is some global state they are changing.
+Since state is handled outside of the pure functional core, the undo/redo actions (specified in the original intent) cannot be added directly to the specific commands. However, since command functions take and return states the caller may easily implement a simple stack to store all of the states. This allows trivial undo/redo implementation.
 
 
 ## Examples

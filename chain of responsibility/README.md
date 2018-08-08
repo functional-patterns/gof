@@ -6,16 +6,33 @@
 Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
  
 
+### Analysis
+
+### Overview
+
+Fit : Natural
+Complexity : Simple
+
+
+### Structure
+
+Chain of Responsibility is chain of functions with matching input and output. In case additional context is required then data binding with monads may be used.
+
+~~~~
+  regularHandler :: a -> a
+  monadicHandler :: a -> m a
+~~~~
+
+Common example of monadic handler is a function, which may fail. In this case input is a plain type and output is the same type wrapped inside a Maybe monad. Monadic handler may also be used to add _flag_ value to the output to indicate that no more processing is required.
+
+
 ## Conclusion
 
-In functional programming functions can be chained easily. Monad is used to add some result value, which then may be accumulated by the functions in the chain.
+In functional programming chaining functions is a common practice. The key difference between the pattern and other function chaining is the purpose. It can be considered to be a restricted version of more general function chaning. Namely the signature of the input and output has to match (at least in monadic level).
 
-Like in the object-oriented counter part, the functions need to have same signature to make the chaining process easy.
+Compared to object-oriented version the is one limitation. Since in pure functional programming functions cannot have side effects, the functions cannot have unit as return value. This means that only thing the chain can do is to map the input to some output.
 
-
-## Note
-
-In object-oriented version the handlers are objects. In functional programming the handlers are functions. Since pure functional programming cannot have side effects, the Chain of Responsibility cannot alter any state or do I/O operations. Thus in functional version the functionality is limited to alter the output.
+Variation of it has been used for example in [railway oriented programming](https://fsharpforfunandprofit.com/rop/). 
 
 
 ## Examples

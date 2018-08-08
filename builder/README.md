@@ -10,8 +10,8 @@ Separate the construction of a complex object from its representation so that th
 
 ### Overview
 
-Fit : Natural
-Complexity : Simple
+- Fit : Natural
+- Complexity : Simple
 
 
 ## Structure

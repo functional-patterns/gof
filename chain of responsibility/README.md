@@ -10,8 +10,8 @@ Avoid coupling the sender of a request to its receiver by giving more than one o
 
 ### Overview
 
-Fit : Natural
-Complexity : Simple
+- Fit : Natural
+- Complexity : Simple
 
 
 ### Structure

@@ -10,8 +10,8 @@ Encapsulate a request as an object, thereby letting you parameterize clients wit
 
 ### Overview
 
-Fit : Artifical
-Complexity : Simple
+- Fit : Artifical
+- Complexity : Simple
 
 
 ### Structure

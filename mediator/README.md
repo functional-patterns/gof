@@ -11,7 +11,7 @@ Define an object that encapsulates how a set of objects interact. Mediator promo
 n/a
 
 
-## Conclusion
+### Conclusion
 
 In pure functional programming there is no interaction between data. Intent of the Mediator design pattern does not apply to functional programming.
 
@@ -19,6 +19,6 @@ Fit : None
 Complexity : n/a
 
 
-## Examples
+### Examples
 
 n/a

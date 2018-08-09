@@ -31,8 +31,8 @@ These functions can then be partially applied with functions of the implementati
 Bridge pattern may be used for the same purposes in functional programming as it is used in the object-oriented programming.
 
 
-Fit : Fluent
-Complexity : Medium
+- Fit : Fluent
+- Complexity : Medium
 
 
 ### Examples

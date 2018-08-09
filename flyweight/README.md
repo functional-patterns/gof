@@ -1,7 +1,7 @@
 # Flyweight
 
 
-### Original Intent
+### Intent
 
 Use sharing to support large numbers of fine-grained objects efficiently.
 
@@ -29,7 +29,6 @@ In Haskell memoize function turns a function to a indexed list of lazyly compute
 In F# flyweight design pattern (sharing a record) is benefical in terms of memory usage. Sharing improves the memory efficiency in proportion of the shared record size and count. For small records the memory usage of the container nullifies the benefit.
 
 Usefulness of the Flyweight pattern depends totally of the underlying programming language and it's implementation. This applies also to object-oriented versions. For example one compiler may produce code, which automatically memoizes the computed values. Another may not memoize anything, despite using the pattern.
-
 
 - Fit : Artifical
 - Complexity : Medium

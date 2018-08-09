@@ -1,17 +1,8 @@
 # Adapter
 
-## Intent
+### Intent
 
 Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
-
-
-## Analysis
-
-
-### Overview
-
-- Fit : Natural
-- Complexity : Simple
 
 
 ### Structure
@@ -36,11 +27,14 @@ Adapting functions is changing the signature of the function.
 ~~~~
   
 
-## Conclusion
+### Conclusion
 
 Adapter pattern is very useful and common in functional programming. It's structure is so trivial, that it is not concidered to be a design pattern at all in functional programming.
 
+- Fit : Fluent
+- Complexity : Trivial
 
-## Examples
+
+### Examples
 
 [F#](adapter.fsx)

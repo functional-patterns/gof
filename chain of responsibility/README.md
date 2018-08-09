@@ -1,18 +1,10 @@
 # Chain of Responsibility
 
 
-## Intent
+### Intent
 
 Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
  
-
-### Analysis
-
-### Overview
-
-- Fit : Natural
-- Complexity : Simple
-
 
 ### Structure
 
@@ -26,7 +18,7 @@ Chain of Responsibility is chain of functions with matching input and output. In
 Common example of monadic handler is a function, which may fail. In this case input is a plain type and output is the same type wrapped inside a Maybe monad. Monadic handler may also be used to add _flag_ value to the output to indicate that no more processing is required.
 
 
-## Conclusion
+### Conclusion
 
 In functional programming chaining functions is a common practice. The key difference between the pattern and other function chaining is the purpose. It can be considered to be a restricted version of more general function chaning. Namely the signature of the input and output has to match (at least in monadic level).
 
@@ -34,7 +26,10 @@ Compared to object-oriented version the is one limitation. Since in pure functio
 
 Variation of it has been used for example in [railway oriented programming](https://fsharpforfunandprofit.com/rop/). 
 
+- Fit : Natural
+- Complexity : Medium
 
-## Examples
+
+### Examples
 
 [F#](chain_of_responsibility.fsx)

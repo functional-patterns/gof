@@ -27,7 +27,7 @@ To visit all the elements in the data structure, a traverser function specific t
 The same visitor can be used to different data structures. Only the traverser function has to be altered.
 
 
-## Conclusion
+### Conclusion
 
 Visitor pattern is commonly known as folding in functional programming. It is combination of two things. A method to traverse through a data structure and a set of functions to perform different operations to each item. For example lists and trees are easy to traverse with recursion.
 
@@ -37,6 +37,6 @@ It is also easy to implement these traversal functions in generic way, so they c
 - Complexity : Simple
 
 
-## Examples
+### Examples
 
 [F#](visitor.fsx)

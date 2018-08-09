@@ -1,28 +1,33 @@
 # Prototype
 
 
-## Intent
+### Intent
 
 Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
 
-## Conclusion
+### Structure
 
-Since all data is immutable in pure functional programming there is no need to clone anything. Cloning is performed in language level when immutable data is modified. That is, a copy of the original value is created with some modified parameters.
-
-Languages like Haskell and F# support modifying of the records with syntactic sugar. For example:
+Core part of the Prototype pattern is a function, which can be partially applied with a prototype and a function modifying the injected prototype. Since all data is immutable, the modifying is creation a new value with some altered fields.
 
 ~~~~
-    type Circle = { Radius : int; X : int; Y : int }
+    clonerTemplate :: Prototype -> (Prototype -> a -> Prototype) -> a -> Prototype
+    clonerTemplate prototype function parameter = function prototype parameter
     
-    let original = { Radius = 5; X = 1; Y = 13 }
-    let copy = { foo with Radius = 6 }
+    cloner parameter = clonerTemplate someProptotype someFunction
 ~~~~
 
-This code snipped creates a copy of value 'original' as 'copy' with increased radius.
+Depending of the given parameter, a different clone of the original prototype is created.
 
 
-## Examples
+### Conclusion
+
+Prototype does not feel natural in functional programming. Functional languages - like Haskell and F# - support altering the record types with simpler syntax. There is little value to do the same with a specific pattern.
+
+- Fit : Artifical
+- Complexity : Simple
+
+
+### Examples
 
 [F#](prototype.fsx)
-

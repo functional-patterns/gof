@@ -1,16 +1,9 @@
 # Bridge
 
-## Intent
+
+### Intent
 
 Decouple an abstraction from its implementation so that the two can vary independently.
-
-
-## Analysis
-
-### Overview
-
-Fit : Natural
-Complexity : Medium
 
 
 ### Structure
@@ -36,6 +29,10 @@ These functions can then be partially applied with functions of the implementati
 ### Conclusion
 
 Bridge pattern may be used for the same purposes in functional programming as it is used in the object-oriented programming.
+
+
+Fit : Fluent
+Complexity : Medium
 
 
 ### Examples

@@ -1,15 +1,44 @@
 # Proxy
 
+
+### Intent
+
 Provide a surrogate or placeholder for another object to control access to it.
 
 
-## Conclusion
+### Structure
 
-Haskell offers lazy map; which may be used to implement memoization. In this way the proxy can be used to memorize the return values for any given parameters.
+Proxy is a function, which has the same signature as the function it surrogates.
 
-Functional programs often feature lazy evaluation. In this sense the possibly expensive computation is deferred later. This is one feature the object oriented counterpart offers.
+~~~~
+    coreFunction :: a -> b -> c
+    proxyFunction :: a -> b -> c
+~~~~
 
-Design pattern is useful also in data hiding, like it was in object-oriented version.
+Proxy can be created from a function template with partial application or using closures.
+
+~~~~
+    proxyFunctionTemplate :: (a -> b -> c) -> a -> b -> c
+    proxyFunctionTemplate coreFunction a b =
+        -- do something before calling calling the coreFunction
+        let c = coreFunction a b
+        -- do something after calling the core function
+~~~~
+
+Depending of the proxyFunctionTemplate implementation, proxy can do various tasks. For example restricting access and caching results.
+
+
+Note while having same structure withthe difference is in the purpo
+
+
+### Conclusion
+
+Proxy pattern fits well to functional programming. It can perform the same tasks as it's object oriented counterpart. Including caching, access restriction and altering the result. While the basic structure is simple, the concrete proxy implementation can be arbitrary complext.
+
+Proxy and  [Decorator](../decorator/README.md)  have the same structure. Only difference between the patterns in functional programming is the purpose.
+
+- Fit : Fluent
+- Complexity : Simple
 
 
 ## Examples

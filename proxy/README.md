@@ -41,6 +41,6 @@ Proxy and  [Decorator](../decorator/README.md)  have the same structure. Only di
 - Complexity : Simple
 
 
-## Examples
+### Examples
 
 [F#](proxy.fsx)

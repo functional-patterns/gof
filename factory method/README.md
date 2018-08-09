@@ -1,32 +1,38 @@
 # Factory Method
 
-## Intent
+
+### Intent
 
 Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. 
 
 
-## Conclusion
+### Structure
 
-Factory Method in functional programming is a simple function, which takes some input parameters and returns the desired value. Framework code can then use these types, as long as functions to operate with these values are also provided.
+Factory method is a function accepting one or more parameters and returning a value. The type of the returned value must support all the functionality expected by the 'client' code.
 
-There is some options for the signature of the creator function. For example:
+There are two options to add function support for the instantiated type.
+
+1. Returned type is defined to be an instance of specific typeclass
 ~~~~
-   1) a -> b -> ^t, where ^t is a generic type
-   2) a -> b -> d,  where d is a discriminated union type
-   3) a -> b -> e,  where e is arbitrary type
+    shapeFactory :: (Shape shape) => Int -> Shape
+    shapeFactory size = ...
 ~~~~
-In the first case statically resolved type parameters may be used to implement the generic functions (F#) or typeclasses (Haskell).
 
-In the second case basic functions are sufficient, as long as they operatate with all of the discriminated union values.
-
-In the third case set of functions to operate with the specific type 'e' has to be also provided to the framework function, so it can operate with the created values.
-
-
-## Note
-
-There is no point to create functions with Factory Method. Better way to achieve the same result would be to use a function, which could then be partially applied by the framework functions.
+2. Returned type is member of a specific discriminated union
+~~~~
+    data Shape = Circle Int | Rectangle Int Int
+    shapeFactory :: Int -> Shape
+~~~~
 
 
-## Example
+### Conclusion
+
+Original intent of the Factory Method is not well suited for functional programming. Concept of creating abstract data feels unnatural. Creating functions is also useless, since instead of passing abstract factory as an argument the concrete functions could be passed directly.
+
+- Fit : Artifical
+- Complexity : Medium
+
+
+### Example
 
 [F#](factory_method.fsx)

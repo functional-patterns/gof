@@ -1,17 +1,9 @@
 # Command
 
 
-## Intent
+### Intent
 
 Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
-
-
-## Analysis
-
-### Overview
-
-- Fit : Artifical
-- Complexity : Simple
 
 
 ### Structure
@@ -32,13 +24,17 @@ It is also possible to combine multiple commands behind a macro command. Signatu
 Commands may be passed to _client_ code as a map. Based on some processing client then queries a command from the map and executes it.
 
 
-## Conclusion
+### Conclusion
 
 Implementation and use of the Command design pattern in functional programming is straightforward. However, the idea of a command does not fit fluently to pure functional programming. Lack of IO actions and mutability limits it's usability in pure functional programming. 
 
 Since state is handled outside of the pure functional core, the undo/redo actions (specified in the original intent) cannot be added directly to the specific commands. However, since command functions take and return states the caller may easily implement a simple stack to store all of the states. This allows trivial undo/redo implementation.
 
 
-## Examples
+- Fit : Artifical
+- Complexity : Trivial
+
+
+### Examples
 
 [F#](command.fsx)

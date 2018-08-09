@@ -19,23 +19,22 @@ Discriminated unions are used to define the language.
 Function to interpret the language specified by the discriminated unions works in recursive manner. Recursion stops, when the terminating literal is met.
 
 ~~~~
-    evaluateExpression :: Expression -> Int
-    evaluateExpression (Literal literal) = evaluateLiteral literal
-    evaluateExpression (Operation operation) = evaluateLiteral operation
-    
+    evaluateExpression :: Expression -> Int   
     evaluateOperation :: Operation -> Int
-    evaluateOperation ...
-    
     evaluateLiteral :: Literal -> Int
-    // end of recursion
 ~~~~
     
 
 ## Conclusion
 
-In functional programming Interpreter is easy to implement and useful. Discriminated unions are ideal to present the hiararcial grammar.
+Defining and evaluating arbitrary languages in functional way is natural. Discriminated unions are lightweight syntax to define the language. Recursive functions are used to evaluate the expressions.
+
+Functional version is more compact and straightforward than object-oriented version. There is no need for classes or mutable data in the design pattern.
+
+- Fit : Fluent
+- Complexity : Medium
 
 
 ## Examples
 
-[F#](interpreter.fsx)
+[F#](interpreter.fsx)[Haskell](interpreter.hs)

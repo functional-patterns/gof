@@ -20,7 +20,6 @@ Fit : None
 Complexity : n/a
 
 
-
-## Examples
+### Examples
 
 n/a

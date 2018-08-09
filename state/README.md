@@ -25,8 +25,8 @@ Value of the handler field - which is the function processing the items - has sp
 
 Pure functional code is stateless. It limits the use cases of the State pattern. However, limited use for it can be found in chained computations. For example folding through a data structure or in state machines. In these cases state consists an altering function, which changes when computation proceeds.
 
-Fit : Artifical
-Complexity : Simple
+- Fit : Artifical
+- Complexity : Simple
 
 
 ### Examples

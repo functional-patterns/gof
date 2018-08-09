@@ -6,25 +6,53 @@
 Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 
 
+## Structure
+
+Functional decoration applies functions functions. Decorating a function may be done in multiple ways. However, important part is that signature of the function remains the same.
+
+~~~~
+    coreFunction :: a -> b -> c
+    decoratedFunction :: a -> b -> c
+~~~~
+
+Decorator can be placed before, after or both sides of the core function. 
+
+Pre-decorator modifies the parameters before those are passed to the core function.
+~~~~
+    PreDecorator :: (a -> b) -> (a, b)
+~~~~
+
+Post-decorator modifies the output of the core function before passing it out.
+~~~~
+    PostDecorator :: c -> c
+~~~~
+
+To make it easy to compose different decorators some bind operators can be defined.
+~~~~
+    pre :: (a, b) -> (a -b -> c) -> c
+    pre ab f = let (a, b) = ab in f a b
+    
+    post :: c -> (c -> c) -> c
+    post c f = f c
+~~~~
+
+With these functions arbitrary decorated function can be created from core function, pre-decorators and post-decorators.
+
+~~~~
+    decorated :: a -> b -> c
+    decorated a b = (preIncreaser a b) `pre` preMaximizer `pre` coreFunction `post` postSquarer
+~~~~
+   
+
 ## Conclusion
 
-If pre-function decoration is used then the signature of the decorator's input and output has to be the same as the input of the core function. Also there can be only single input parameter. However, tuple may be used to give actually more parameters. That is:
-~~~~
-   type coreFunction : (a * b) -> c    =>    type preDecorator : (a * b) - > (a * b)
-~~~~
+Chaining different functions together, is the natural way to compose functional programs. Decorator is merely a restricted version of more general function chaning. It keeps the signature of the function the same. Structure of the design pattern is really simple and flexible. Compared to the object-oriented version, less code is required since
 
-If post-function decoration is used then the signature of the decorator's input and output has to be the same as the output of the core function. That is:
-~~~~
-   type coreFunction : (a -> b) -> c    =>    type postDecorator : c -> c   
-~~~~
-Seems that pre-decoration is mapping parameters (input) and post-decoration is mapping the result (output). In both cases it is transparent for the caller if the function is decorated or not.
+In some extend it may be used to same purposes as the object-oriented counterpart. Sometimes the object-oriented version is used to generate side-effects - for example logging - which cannot be done in pure functional programming without altering the result of the core function. 
 
-In pure functional context the post function decorator is more powerful. This is due that in pure functional world everything a function does is the result. If the core function has some fixed values to calculate the result, these cannot be altered by the pre-decoration. Clearly this is not the case with post-decoration, which can alter the result.
- 
-There is also third kind of decorator, which can operate as pre- and post-decorator. It does both maps the input parameters and also the output. However, these kind of decorators cannot be chained together without additional effort. Signature of this kind of decorator is:
-~~~~
-   type coreFunction (a -> b) -> c    =>    type fullDecorator : (a - b) -> c
-~~~~
+- Fit : Fluent
+- Complexity : Simple
+
 
 ## Examples
 

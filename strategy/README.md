@@ -35,9 +35,7 @@ Strategy can then be injected to the 'client' function with partial application 
 ~~~~
     
 
-
-
-## Conclusion
+### Conclusion
 
 Startegy design pattern is often used in functional programming. It is trivial concept to any functional language, which has functions as first-class values. Strategy is nothing more than a set of functions having the same interface and performing conceptually same tasks.
 
@@ -45,6 +43,6 @@ Fit : Fluent
 Complexity : Trivial
 
 
-## Examples
+### Examples
 
 [F#](strategy.fsx)

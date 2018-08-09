@@ -17,8 +17,8 @@ Observer pattern is about some well defined data changing and notifying interest
 
 However, reactive functional programming may be used for the similar purposes. In this case functions operate and return streams of values.
 
-Fit : None
-Complexity : n/a
+- Fit : None
+- Complexity : n/a
 
 
 ### Examples

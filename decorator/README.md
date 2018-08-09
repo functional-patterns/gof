@@ -1,12 +1,12 @@
 # Decorator
 
 
-## Intent
+### Intent
 
 Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 
 
-## Structure
+### Structure
 
 Functional decoration applies functions functions. Decorating a function may be done in multiple ways. However, important part is that signature of the function remains the same.
 
@@ -51,7 +51,7 @@ Chaining different functions together, is the natural way to compose functional 
 In some extend it may be used to same purposes as the object-oriented counterpart. Sometimes the object-oriented version is used to generate side-effects - for example logging - which cannot be done in pure functional programming without altering the result of the core function. 
 
 - Fit : Fluent
-- Complexity : Simple
+- Complexity : Trivial
 
 
 ## Examples

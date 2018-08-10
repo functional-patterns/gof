@@ -32,8 +32,8 @@ Facade ia as important concept in functional programmin as it is in object-orien
 
 In object-oriented programming Facade class usually offers multiple functions. The same effect can be achieved in functional programming by providing a faface module with many free functions. If data adaption is required, then [Adapter](../adapter/README.md) pattern can be used as part of the Facade.
 
-- Fit : Fluent
-- Complexity : Simple
+- Applicability : Natural
+- Complexity : Trivial
 
 
 ### Examples

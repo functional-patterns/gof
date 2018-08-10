@@ -24,8 +24,8 @@ Depending of the given parameter, a different clone of the original prototype is
 
 Prototype does not feel natural in functional programming. Functional languages - like Haskell and F# - support altering the record types with simpler syntax. There is little value to do the same with a specific pattern.
 
-- Fit : Artifical
-- Complexity : Simple
+- Applicability : Artifical
+- Complexity : Trivial
 
 
 ### Examples

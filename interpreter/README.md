@@ -31,7 +31,7 @@ Defining and evaluating arbitrary languages in functional way is natural. Discri
 
 Functional version is more compact and straightforward than object-oriented version. There is no need for classes or mutable data in the design pattern.
 
-- Fit : Fluent
+- Applicability : Natural
 - Complexity : Medium
 
 

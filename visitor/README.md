@@ -34,7 +34,7 @@ Visitor pattern is commonly known as folding in functional programming. It is co
 It is also easy to implement these traversal functions in generic way, so they can operate with any kind of items and take different functions as parameters to do the 'visiting' part of the design pattern. Haskell and F# offer a traverser functions for list by default. 
 
 - Applicability : Natural
-- Complexity : Trivial
+- Complexity : Medium
 
 
 ### Examples

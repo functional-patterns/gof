@@ -32,7 +32,7 @@ In functional programming natural way to implement composite is to use discrimin
 
 Functions taking the discriminated union types as parameters operate the samy way from the client point of view for single and composite values. Usually these functions use recursion to traverse through the values containing composites.
 
-- Fit : Fluent
+- Applicability : Natural
 - Complexity : Medium
 
 

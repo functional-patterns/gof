@@ -30,7 +30,7 @@ In F# flyweight design pattern (sharing a record) is benefical in terms of memor
 
 Usefulness of the Flyweight pattern depends totally of the underlying programming language and it's implementation. This applies also to object-oriented versions. For example one compiler may produce code, which automatically memoizes the computed values. Another may not memoize anything, despite using the pattern.
 
-- Fit : Artifical
+- Applicability : Artifical
 - Complexity : Medium
 
 

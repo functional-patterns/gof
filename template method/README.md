@@ -29,7 +29,7 @@ It can execute it's own code between calling the given sub-functions.
 
 In functional programming Template Method design pattern is higher-order function partially applied with specific sub-functions. It is natural part of functional programming and used basically in every real functional program.
 
-- Fit : Fluent
+- Applicability : Natural
 - Complexity : Trivial
 
 

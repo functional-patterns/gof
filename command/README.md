@@ -31,7 +31,7 @@ Implementation and use of the Command design pattern in functional programming i
 Since state is handled outside of the pure functional core, the undo/redo actions (specified in the original intent) cannot be added directly to the specific commands. However, since command functions take and return states the caller may easily implement a simple stack to store all of the states. This allows trivial undo/redo implementation.
 
 
-- Fit : Artifical
+- Applicability : Artifical
 - Complexity : Trivial
 
 

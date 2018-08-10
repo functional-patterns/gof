@@ -28,7 +28,7 @@ In this short listing the output for different concrete builder has the same typ
 
 Functional builder provides the same benefits as the object-oriented version. It's structure is simple and lightweight.
 
-- Fit : Fluent
+- Applicability : Natural
 - Complexity : Trivial
 
 

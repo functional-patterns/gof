@@ -26,7 +26,7 @@ Compared to object-oriented version the is one limitation. Since in pure functio
 
 Variation of it has been used for example in [railway oriented programming](https://fsharpforfunandprofit.com/rop/). 
 
-- Fit : Natural
+- Applicability : Natural
 - Complexity : Medium
 
 

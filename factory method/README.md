@@ -29,7 +29,7 @@ There are two options to add function support for the instantiated type.
 
 Original intent of the Factory Method is not well suited for functional programming. Concept of creating abstract data feels unnatural. Creating functions is also useless, since instead of passing abstract factory as an argument the concrete functions could be passed directly.
 
-- Fit : Artifical
+- Applicability : Artifical
 - Complexity : Medium
 
 

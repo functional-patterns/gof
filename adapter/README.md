@@ -31,7 +31,7 @@ Adapting functions is changing the signature of the function.
 
 Adapter pattern is very useful and common in functional programming. It's structure is so trivial, that it is not concidered to be a design pattern at all in functional programming.
 
-- Fit : Fluent
+- Applicability : Natural
 - Complexity : Trivial
 
 

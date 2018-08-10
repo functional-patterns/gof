@@ -45,32 +45,43 @@ These are the 23 original GoF design patterns, grouped in three categories by th
 
 ## Analysis
 
-Each of the patterns is classified with the criteria described here.
-
-
-### Applicability
-
-If the _intention_ of the design pattern is meaningful in pure functional programming. For example Observer design pattern is used to notify changes in the subject object. Since immutability is one of the key concepts in functional programming, there is not much use for the design pattern.
-
-On the otherhand State design pattern deals with immutable state. At first glance it may look totally useless in functional programming. However when analysed further, the meaning of the pattern is to get rid of the if-then-else structure and replace it with an object. In functional programming there is also a lot of concepts involving a concept of 'state'. On of these is the state during a fold operation. The idea behind the State design pattern can be directly applied to a complex fold operation.
-
-If answer for this question is "No", then rest of the anylises criterias are omitted. The pattern simply does not work in functional programming.
-
-Value: Yes | No
-
-
-### Usefulness
-
-If something can be done, it does not mean it should be done. Each design pattern is evaluated if it makes sense to be used in functional programming.
-
-Value: Minor | Medium | Major
+Following analysis is presented from all the patterns. 
 
 
 ### Structure
 
 Some design patterns are very trivial to implement in functional programming. For example Template Method is just a function which is then partially applied to do something usefull. On the other hand Iterator is way more complex to implement and understand.
 
-Value: Simple | Medium | Complex
+
+### Applicability
+
+How well the _intention_ of the design pattern fits to pure functional programming. Since the original GoF design patterns are found from object-oriented programming, it may be the case that some of them do not fit well to functional programming.
+
+For example Observer design pattern is used to notify changes in the subject object. Since immutability is one of the key concepts in functional programming, there is not much use for the design pattern.
+
+On the otherhand [Template Method](template%20method/README.md) is what functional programming is all about. Combining simple functions to perform some complicated tasks. Fit of this pattern is _natural_.
+
+| Value     | Meaning                                                      |
+|-----------|--------------------------------------------------------------|
+| None      | Pattern cannot be applied at all to functional programming   |
+| Artifical | Pattern can be applied, but it is not good functional design |
+| Natural   | Pattern fits fluently to functional programming              |
+
+
+
+### Complexity
+
+How complicated the functional version of the design pattern is. Some design patterns are reduced to negligible in pure functional form. 
+
+For example [Strategy](strategy/README.md) is set of functions having the same signature and conceptually performing the same task. This kind of design pattern is _trivial_ in functional programming.
+
+On the other hand some design patterns have more complex structure or require more advanced techniques, like typeclasses and lenses. These patterns are classified to be more complex.
+
+| Value   | Meaning                                                                                      |
+|---------|----------------------------------------------------------------------------------------------|
+| Trivial | Pattern uses only the very basic techniques (partial application, composition etc)           |
+| Medium  | Pattern uses more advanced techniques (typeclasse, statically resolved type parameters etc)  |
+| Complex | Pettern uses advanced functional tecniques (lenses, zippers, memoization, infinite lazyness) |
 
 
 ### Conclusion

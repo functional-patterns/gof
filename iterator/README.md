@@ -27,7 +27,7 @@ Implementing traversal through list or tree structure is easy. However, creating
 
 Concept of Iterator is not well suited to functional programming. Usually data structures are traversed in single run instead of step-by-step method. While implementation of a recursive tree traverser is just a few lines of code, creating an iterator implementation is way more complex.
 
-- Fit : Artifical
+- Applicability : Artifical
 - Complexity : Complex
 
 

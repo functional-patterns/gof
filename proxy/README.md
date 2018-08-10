@@ -37,8 +37,8 @@ Proxy pattern fits well to functional programming. It can perform the same tasks
 
 Proxy and  [Decorator](../decorator/README.md)  have the same structure. Only difference between the patterns in functional programming is the purpose.
 
-- Fit : Fluent
-- Complexity : Simple
+- Applicability : Natural
+- Complexity : Trivial
 
 
 ### Examples

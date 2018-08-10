@@ -50,7 +50,7 @@ Chaining different functions together, is the natural way to compose functional 
 
 In some extend it may be used to same purposes as the object-oriented counterpart. Sometimes the object-oriented version is used to generate side-effects - for example logging - which cannot be done in pure functional programming without altering the result of the core function. 
 
-- Fit : Fluent
+- Applicability : Natural
 - Complexity : Trivial
 
 

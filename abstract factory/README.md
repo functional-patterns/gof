@@ -18,7 +18,7 @@ The actual 'factory' item is a set of functions each creating a specific product
 
 Abstract Factory is applicable also in functional programming. Discriminated unions are a natural way to enforce that only compatible data is used by the 'framework' code. Lack of functional polymorphism makes the pattern a bit cumbersome in F#. However, other techniques may be used to overcome this obstacle. In Haskell typeclasses are helpful.
 
-- Applicably : Artifical
+- Applicability : Artifical
 - Complexity : Medium
 
 

@@ -6,19 +6,7 @@
 /// 
 
 ///
-/// CONCLUSION
+/// Example
 /// 
-/// Observer pattern is about some well defined data changing and notifying interested parties.
-/// The pattern makes little sense in pure functional context, since there is no changing state
-/// (mutable variables).
-/// 
-/// However, reactive functional programming may be used for the similar purposes. In this case
-/// functions operate and return streams of values.
-/// 
-
-///
-/// NOTE
-/// 
-/// Haskell has implementation for Observer pattern. However, it is full of IO keywords, making it
-/// impure solution.
+/// n/a
 /// 

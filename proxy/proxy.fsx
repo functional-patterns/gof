@@ -5,18 +5,7 @@
 /// 
 
 ///
-/// CONCLUSION
-/// 
-/// Haskell offers lazy map; which may be used to implement memoization. In this way the proxy
-/// can be used to memorize the return values for any given parameters.
-/// 
-/// Functional programs often feature lazy evaluation. In this sense the possibly expensive
-/// computation is deferred later. This is one feature the object oriented counterpart offers.
-/// 
-/// Design pattern is useful also in data hiding, like it was in object-oriented version.
-
-///
-/// EXAMPLE 1
+/// Example 1
 /// 
 /// In this example the core function tests if a number is a prime number. To make it faster,
 /// it is wrapped inside a proxy function, which uses a pre-calculated list for the numbers up to
@@ -56,7 +45,7 @@ test()
 
 
 ///
-/// EXAMPLE 2
+/// Example 2
 /// 
 /// In this example the core function returns some classified information. The proxy functions
 /// control access rights. For example user logged in with high security information is able

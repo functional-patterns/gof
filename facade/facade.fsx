@@ -6,17 +6,6 @@
 /// 
 
 ///
-/// CONCLUSION
-/// 
-/// In functional programming natural way to implement Facade is to use function composition. This
-/// way a low level or otherwise difficult to use interface may be turned to more abstract and easy
-/// to understand interface.
-/// 
-/// If only one single function is converted behind the Facade, then the parttern is similar with
-/// functional Adapter.
-/// 
-
-///
 /// Example
 /// 
 /// In this example Compression module contains some low level functions to create compressed data.

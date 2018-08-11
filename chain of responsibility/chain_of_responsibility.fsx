@@ -7,25 +7,6 @@
 /// 
 
 ///
-/// CONCLUSION
-/// 
-/// In functional programming functions can be chained easily. Monad is used to add some result
-/// value, which then may be accumulated by the functions in the chain.
-/// 
-/// Like in the object-oriented counter part, the functions need to have same signature to make
-/// the chaining process easy.
-/// 
-
-///
-/// COMPARISON
-/// 
-/// In object-oriented version the handlers are object. In functional programming the handlers are
-/// functions. Since pure functional programming cannot have side effects, the Chain of
-/// Responsibility cannot alter any state or do I/O operations. Thus in functional version the
-/// functionality is limited to alter the output.
-/// 
-
-///
 /// Example
 /// 
 /// In this example a integer is tested with various methods. It is passed through a chain of

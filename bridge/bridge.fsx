@@ -5,20 +5,6 @@
 /// 
 
 ///
-/// NOTES
-/// 
-/// Find out if there is any sense to abstract actual data in functional programming. Usually data
-/// has to be specific.
-/// 
-
-///
-/// CONCLUSION
-/// 
-/// Bridge pattern has a different form in functional than in object-oriented programming. However,
-/// the same idea may be used to totally separate the abstraction from the implementation.
-/// 
-
-///
 /// Example - Drawing application
 /// 
 /// In this example simple drawing application is implemented. Client can instantiate and use

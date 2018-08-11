@@ -7,8 +7,7 @@
 /// 
 
 ///
-/// CONCLUSION
+/// Example
 /// 
-/// In pure functional programming there is no interaction between data. Intent of the Mediator
-/// design pattern does not apply to functional programming.
+/// n/a
 /// 

@@ -6,17 +6,7 @@
 ///
 
 ///
-/// CONCLUSION
-/// 
-/// Functional programming is stateless. It should be no surprise that State design pattern is not
-/// well fitted to functional programming.
-/// 
-/// State machines, state monads and folds may be used to manage states in functional programming.
-/// However, none of these feel well suited to address the original intent of the design pattern.
-/// 
-
-///
-/// EXAMPLE
+/// Example
 /// 
 /// In this example a state is used to implement a simple message protocol. State of the receiver
 /// changes when Open and Close messages are received. If the receiver is waiting for a connection

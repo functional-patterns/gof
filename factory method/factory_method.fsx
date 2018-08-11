@@ -26,15 +26,7 @@
 /// 
 /// In the third case set of functions to operate with the specific type 'e' has to be also
 /// provided to the framework function, so it can operate with the created values
-/// 
-
 ///
-/// REMARKS
-/// 
-/// There is no point to create functions with Factory Method. Better way to achieve the same
-/// result would be to use a function, which could then be partially applied by the framework
-/// functions.
-/// 
 
 ///
 /// Example

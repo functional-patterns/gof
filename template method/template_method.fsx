@@ -7,15 +7,6 @@
 /// 
 
 ///
-/// CONCLUSION
-/// 
-/// Template Method is one of the simplest object-oriented design patterns to be implemented in
-/// pure functional way. Essentially it is just a simple function composition.
-/// 
-/// Compared to object-oriented version the functional version is way shorter.
-/// 
-
-///
 /// Example
 ///
 /// This example defines a template method for compressing files. Despite different compression

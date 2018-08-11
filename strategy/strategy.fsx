@@ -6,27 +6,10 @@
 /// 
 
 ///
-/// CONCLUSION
-/// 
-/// In functional programming strategy is just a family of functions having the same signature and
-/// conceptually performing the same kind of task (like compressing data or sorting items).
-/// 
-
-///
-/// NOTES
-/// 
-/// Remember to compare different design patterns in functional programming. Many of them -
-/// including Strategy - are just function composition and partial application. Check if the design
-/// patterns having similar class diagrams in object-oriented programming have similar structures
-/// in functional programming.
-/// 
-
-///
-/// EXAMPLE
+/// Example
 /// 
 /// In this example different strategies are implemented and used to divide a phrase to words.
 /// 
-
 
 // Safe versions of the default skip and take functions
 let take count items = List.truncate count items

@@ -6,15 +6,13 @@
 /// 
 
 ///
-/// CONCLUSION
+/// EXAMPLE
 /// 
-/// Since all data is immutable in pure functional programming there is no need to clone anything.
-/// Cloning is performed in language level when immutable data is modified. That is, a copy of the
-/// original value is created with some modified parameters.
+/// Framework offers abstract insertion tool to add and position different types of items. Depending
+/// of the type and values of the given prototype value, framework creates different items.
 /// 
-/// Languages like Haskell and F# support modifying of the records with syntactic sugar. For example
-/// if 'foo' is a record with some int type field 'size' and 'position' then 'foo' can be cloned
-/// with { foo with size = 5 }. This creates a copy of 'foo' with same position, but with size of 5.
+/// Two modules - Graphics and Music - are created, which are then used with the framework. Client
+/// then partially applies the framework function(s) with specific items it wants to manipulate.
 /// 
 
 module Framework =

@@ -12,16 +12,16 @@ Discriminated unions are used to define the language.
 
 ~~~~
     data Expression = Literal Literal | Operation Operation
-    data Literal = One | Two | Three
     data Operation = Plus Expression Expression | Minus Expression Expression
+    type Literal = Int
 ~~~~
 
 Function to interpret the language specified by the discriminated unions works in recursive manner. Recursion stops, when the terminating literal is met.
 
 ~~~~
-    evaluateExpression :: Expression -> Int   
-    evaluateOperation :: Operation -> Int
-    evaluateLiteral :: Literal -> Int
+    evaluateExpression :: Expression -> Literal   
+    evaluateOperation :: Operation -> Literal
+    evaluateLiteral :: Literal -> Literal
 ~~~~
     
 

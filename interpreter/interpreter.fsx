@@ -12,15 +12,14 @@
 /// 
 
 // Specify grammar with discriminated unions
-type Expression = Number of Number | Operation of Operation | Empty
-and Number = int
+type Expression = Literal of Literal | Operation of Operation
 and Operation = | Plus of Expression * Expression
                 | Minus of Expression * Expression
-                | Factorial of Expression
+and Literal = int
 
 
 // Some functions evaluating different types of values
-let rec evaluateNumber number =
+let rec evaluateLiteral number =
     number
 
 and evaluateOperation operation =
@@ -29,50 +28,22 @@ and evaluateOperation operation =
             (evaluateExpression left) + (evaluateExpression right)
         | Minus (left, right) ->
             (evaluateExpression left) - (evaluateExpression right)
-        | Factorial a ->
-            let rec factorial n = match n with 1 -> 1 | n -> n * factorial (n - 1)
-            factorial (evaluateExpression a)
 
 and evaluateExpression expression =
     match expression with
-        | Number n ->
-            evaluateNumber n
+        | Literal n ->
+            evaluateLiteral n
         | Operation o ->
             evaluateOperation o
 
-
-// Function to parse given input to an expression
-let rec parse input stack =
-    match input with
-        | [] ->
-            stack
-        | token::input ->
-            match token with
-                | "+" ->
-                    match stack with
-                        a::b::stack ->
-                            let e = Expression.Operation (Operation.Plus (a, b))
-                            parse input (e::stack)
-                | "-" ->
-                    match stack with
-                        a::b::stack -> 
-                            let e = Expression.Operation (Operation.Minus (a, b))
-                            parse input (e::stack)
-                | "!" ->
-                    match stack with
-                        a::stack ->
-                            let e = Expression.Operation (Operation.Factorial a)
-                            parse input (e::stack)
-                | number ->
-                    let n = System.Int32.Parse number
-                    let e = Expression.Number n
-                    parse input (e::stack)
-
-
 let test() =
-    // Create expression 100 + 10 - 200
-    let input = string("100 10 + 200 -").Split ' ' |> List.ofArray
-    let expression = List.head (parse input [])
+    // Create expression (2 + 3) - 1
+    let one = 1 |> Expression.Literal
+    let two = 2 |> Expression.Literal
+    let three = 3 |> Expression.Literal
+
+    let sum = Plus (two, three) |> Expression.Operation
+    let expression = Minus (sum, one) |> Expression.Operation
 
     // Calculate the result
     let result = evaluateExpression expression

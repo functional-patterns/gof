@@ -12,9 +12,9 @@
 -- This example defines a template function for compressing files. The template enforces the generic
 -- structure of how compression is done as well as the general structure of the compressed file.
 --
---   format | size | checksum | <compressed data>
+--   compressionFormat | checksumFormat | checksum | <compressed data>
 
--- The altering parts are compression and checksum algorithsm, which are given as parameters for the
+-- The altering parts are compression and checksum algorithms, which are given as parameters for the
 -- template compression function.
 -- 
 
@@ -22,13 +22,12 @@
 type CompressFunction = [Char] -> [Char]
 type ChecksumFunction = [Char] -> Int
 
-zipTemplate :: CompressFunction -> ChecksumFunction -> String -> [Char] -> [Char]
-zipTemplate compressAlgorithm checksumAlgorithm format input = do
-    let payload = compressAlgorithm input
-    let size = length payload
+zipTemplate :: CompressFunction -> String -> ChecksumFunction -> String -> [Char] -> [Char]
+zipTemplate compressionAlgorithm compressionFormat checksumAlgorithm  checksumFormat input = do
+    let payload = compressionAlgorithm input
     let checksum = checksumAlgorithm input
 
-    format ++ " | " ++ (show size) ++ " | " ++ (show checksum) ++ " | " ++ payload
+    compressionFormat ++ "|" ++ checksumFormat ++ "|" ++ (show checksum) ++ "|" ++ payload
 
 --
 -- Simple compress algorithm removes spaces
@@ -50,7 +49,7 @@ main = do
     let phrase = "a brown fox jumped over the lazy dog"
 
     -- Partial application is used to the template method create a concrete zipper function
-    let simpleZip = zipTemplate simpleCompress simpleChecksum "SIMPLE"
+    let simpleZip = zipTemplate simpleCompress "simple" simpleChecksum "unsecure"
     let compressed =  simpleZip phrase
 
     putStrLn compressed

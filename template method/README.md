@@ -35,4 +35,4 @@ In functional programming Template Method design pattern is higher-order functio
 
 ### Examples
 
-[F#](template_method.fsx)
+[Haskell](template_method.hs) [F#](template_method.fsx)

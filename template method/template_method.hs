@@ -9,35 +9,26 @@
 --
 -- Example
 --
--- This example defines a template method for compressing files. Despite different compression
--- formats all the files have header + payload. This is modeled by the template method.
--- Alternating part is the header format, compression algorithm and the checksum calculation.
--- 
-
+-- This example defines a template function for compressing files. The template enforces the generic
+-- structure of how compression is done as well as the general structure of the compressed file.
 --
--- Template for all compression is to join header and payload together. Header creator may use
--- compressed data length and checksum. Compression uses only the original data.
+--   format | size | checksum | <compressed data>
+
+-- The altering parts are compression and checksum algorithsm, which are given as parameters for the
+-- template compression function.
 -- 
 
-type HeaderFunction = Int -> Int -> [Char]
+
 type CompressFunction = [Char] -> [Char]
 type ChecksumFunction = [Char] -> Int
 
-zipTemplateMethod :: HeaderFunction -> CompressFunction -> ChecksumFunction -> [Char] -> [Char]
-zipTemplateMethod headerCreator compressAlgorithm checksumAlgorithm input = do
+zipTemplate :: CompressFunction -> ChecksumFunction -> String -> [Char] -> [Char]
+zipTemplate compressAlgorithm checksumAlgorithm format input = do
     let payload = compressAlgorithm input
     let size = length payload
     let checksum = checksumAlgorithm input
-    let header = headerCreator size checksum
 
-    header ++ payload
-
---
--- Simple header creator joins size and checksum
--- 
-simpleHeader :: HeaderFunction
-simpleHeader size checksum =
-    show size ++ show checksum
+    format ++ " | " ++ (show size) ++ " | " ++ (show checksum) ++ " | " ++ payload
 
 --
 -- Simple compress algorithm removes spaces
@@ -59,7 +50,7 @@ main = do
     let phrase = "a brown fox jumped over the lazy dog"
 
     -- Partial application is used to the template method create a concrete zipper function
-    let simpleZip = zipTemplateMethod simpleHeader simpleCompress simpleChecksum
+    let simpleZip = zipTemplate simpleCompress simpleChecksum "SIMPLE"
     let compressed =  simpleZip phrase
 
     putStrLn compressed

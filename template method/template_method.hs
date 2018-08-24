@@ -9,21 +9,16 @@
 --
 -- Example
 --
--- This example defines a template function for compressing files. The template enforces the generic
--- structure of how compression is done as well as the general structure of the compressed file.
---
---   compressionFormat | checksumFormat | checksum | <compressed data>
-
--- The altering parts are compression and checksum algorithms, which are given as parameters for the
--- template compression function.
+-- This example defines a template function for packing data. The template enforces the steps of the
+-- algorithm and the structure of the packet. The altering parts - namely compression and checksum
+-- algorithms - can be varied independently.
 -- 
-
 
 type CompressFunction = [Char] -> [Char]
 type ChecksumFunction = [Char] -> Int
 
-zipTemplate :: CompressFunction -> String -> ChecksumFunction -> String -> [Char] -> [Char]
-zipTemplate compressionAlgorithm compressionFormat checksumAlgorithm  checksumFormat input = do
+packTemplate :: CompressFunction -> String -> ChecksumFunction -> String -> [Char] -> [Char]
+packTemplate compressionAlgorithm compressionFormat checksumAlgorithm  checksumFormat input = do
     let payload = compressionAlgorithm input
     let checksum = checksumAlgorithm input
 
@@ -49,7 +44,7 @@ main = do
     let phrase = "a brown fox jumped over the lazy dog"
 
     -- Partial application is used to the template method create a concrete zipper function
-    let simpleZip = zipTemplate simpleCompress "simple" simpleChecksum "unsecure"
-    let compressed =  simpleZip phrase
+    let pack = packTemplate simpleCompress "simple" simpleChecksum "unsecure"
+    let compressed =  pack phrase
 
     putStrLn compressed

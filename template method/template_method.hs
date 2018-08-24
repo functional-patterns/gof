@@ -45,6 +45,6 @@ main = do
 
     -- Partial application is used to the template method create a concrete zipper function
     let pack = packTemplate simpleCompress "simple" simpleChecksum "unsecure"
-    let compressed =  pack phrase
+    let packet =  pack phrase
 
-    putStrLn compressed
+    putStrLn packet

@@ -8,7 +8,7 @@ Attach additional responsibilities to an object dynamically. Decorators provide 
 
 ### Structure
 
-Functional decoration applies functions functions. Decorating a function may be done in multiple ways. However, important part is that signature of the function remains the same.
+Functional decoration applies to functions. Decorating a function may be done in multiple ways. However, important part is that signature of the function remains the same.
 
 ~~~~
     coreFunction :: a -> b -> c

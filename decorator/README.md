@@ -29,7 +29,7 @@ Post-decorator modifies the output of the core function before passing it out.
 
 To make it easy to compose different decorators some bind functions can be defined.
 ~~~~
-    pre :: (a, b) -> (a -b -> c) -> c
+    pre :: (a, b) -> (a -> b -> c) -> c
     pre ab f = let (a, b) = ab in f a b
     
     post :: c -> (c -> c) -> c

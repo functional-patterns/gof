@@ -38,4 +38,4 @@ Functions taking the discriminated union types as parameters operate the samy wa
 
 ### Examples
 
-[F#](composite.fsx)
+[Haskell](composite.hs) [F#](composite.fsx)

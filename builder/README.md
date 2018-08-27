@@ -34,4 +34,4 @@ Functional builder provides the same benefits as the object-oriented version. It
 
 ### Examples
 
-[F#](builder.fsx)
+[Haskell](builder.hs) [F#](builder.fsx)

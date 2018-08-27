@@ -12,7 +12,7 @@ Builder is a function template defining a step-by-step construction processes. A
 
 ~~~~
     -- example of builder template
-    builderTemplate :: (a -> b) -> (c -> d) -> (e -> f) -> Data -> String
+    builderTemplate :: (a -> doc -> doc) -> (c -> doc -> doc) -> (e -> doc -> doc) -> Data -> String
     builderTemplate firstStep secondStep thirdStep input = ...
     
     ...

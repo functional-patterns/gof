@@ -14,7 +14,7 @@ Composite can be presented as recursive discriminated union type with one of the
   data Shape = Circle Int | Square Int | Composite [Shape]
 ~~~~
 
-Functions performing operations with the shapes are handling singular shapes as well as composite shapes. User of these functions cannot distinguish if a single shape or composite is uded by a function.
+Functions performing operations with the shapes are handling singular shapes as well as composite shapes. User of these functions cannot distinguish if a single shape or composite is used by a function.
 
 ~~~~
   area :: Shape -> Int

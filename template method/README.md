@@ -21,7 +21,7 @@ It can execute it's own code between calling the given sub-functions.
 
 ~~~~
     templateMethod functionA functionB x y =
-        -- do something, call functionA, do something more, call functionB, do final calucaltion
+        -- do something, call functionA, do something more, call functionB, do final calculation
 ~~~~
 
 

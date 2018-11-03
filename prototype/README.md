@@ -30,4 +30,4 @@ Prototype does not feel natural in functional programming. Functional languages 
 
 ### Examples
 
-[F#](prototype.fsx)
+[Haskell](prototype.hs) [F#](prototype.fsx)

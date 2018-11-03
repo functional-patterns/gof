@@ -25,7 +25,7 @@ Proxy can be created from a function template with partial application or using 
         -- do something after calling the core function
 ~~~~
 
-Depending of the proxyFunctionTemplate implementation, proxy can do various tasks. For example restricting access and caching results.
+Depending of the proxyFunctionTemplate implementation, proxy can do various tasks. For example restricting access or caching results.
 
 
 Note while having same structure withthe difference is in the purpo

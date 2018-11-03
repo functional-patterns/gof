@@ -43,4 +43,6 @@ Proxy and  [Decorator](../decorator/README.md)  have the same structure. Only di
 
 ### Examples
 
-[Haskell 1](proxy_1.hs) [F#](proxy.fsx)
+[Haskell 1](proxy_1.hs)
+[Haskell 2](proxy_2.hs)
+[F#](proxy.fsx)

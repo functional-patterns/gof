@@ -11,7 +11,7 @@ Encapsulate a request as an object, thereby letting you parameterize clients wit
 Command is a function, which takes a state as an input and returns alterate state. If operations may fail, then monadic value may be used. Note that all of the commands must have the similar signature (either regular or monadic).
 
 ~~~~   
-  regularFunction :: state -> state
+  regularCommand :: state -> state
   monadicCommand :: state -> Maybe state
 ~~~~
 

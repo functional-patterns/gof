@@ -24,5 +24,5 @@ Abstract Factory is applicable also in functional programming. Discriminated uni
 
 ### Examples
 
+[Haskell](abstract_factory.hs)  
 [F#](abstract_factory.fsx)
-[Haskell](abstract_factory.hs)

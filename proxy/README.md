@@ -20,7 +20,7 @@ Proxy can be created from a function template with partial application or using 
 ~~~~
     proxyFunctionTemplate :: (a -> b -> c) -> a -> b -> c
     proxyFunctionTemplate coreFunction a b =
-        -- do something before calling calling the coreFunction
+        -- do something before calling the coreFunction
         let c = coreFunction a b
         -- do something after calling the core function
 ~~~~

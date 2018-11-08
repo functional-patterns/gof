@@ -28,9 +28,6 @@ Proxy can be created from a function template with partial application or using 
 Depending of the proxyFunctionTemplate implementation, proxy can do various tasks. For example restricting access or caching results.
 
 
-Note while having same structure withthe difference is in the purpo
-
-
 ### Conclusion
 
 Proxy pattern fits well to functional programming. It can perform the same tasks as it's object oriented counterpart. Including caching, access restriction and altering the result. While the basic structure is simple, the concrete proxy implementation can be arbitrary complext.
